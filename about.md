@@ -1,12 +1,35 @@
 ---
 layout: page
-title: About
+title: About Me
 permalink: /about/
 feature-img: "img/sample_feature_img_2.png"
 ---
 
-Type Theme is a free and open-source theme for [Jekyll](http://jekyllrb.com/), licensed under the MIT License.
+{% highlight bash %}
+$ cat Portfolio.md
+Keio University, majored Econ.  
 
-Head over to the [theme's documentation](https://rohanchandra.github.io/project/type/) for much more information about Type Theme or to install this theme on your own Jekyll site.
+$ Qunosy
+# Personal Gunosy with Qiita API
+# https://github.com/timakin/qunosy
 
-This file is an example of a page in Jekyll, that automatically shows up in the header navigation, you can delete or modify this file freely.
+$ CodeMagnet
+# 
+# 
+
+$ Academic_Report_and_R_resources
+
+
+$ grad_academic_report_libs
+
+$ crunchbase_academic
+
+$ Casualyze
+
+$ n_repo
+
+$ twitter_word_analysis_code
+
+$ yahooloco_crawling
+{% endhighlight %}
+てすとあばうと

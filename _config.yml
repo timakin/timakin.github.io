@@ -6,25 +6,23 @@ url: "http://timaki.github.io" # the base hostname & protocol for your site
 theme:
   # Meta
   title: timakin.log
-  avatar: avatar.png
+  avatar: butaman.jpeg
   gravatar: # email md5 hash
-  description: "cat timakin.log" # used by search engines
+  description: "エンジニアtimakin's site" # used by search engines
   
   # Header and footer text
   header_text: >
-     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-     
-     <p>Remove all header text in <code>_config.yml</code> to disable this feature.</p>
+     だいたいなめきっている技術者 :D
   footer_text: >
    Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
   
   # Icons
   rss: false
-  email_address: # full email address, e.g. "sam@example.com"
+  email_address: "timaki.st@gmail.com"# full email address, e.g. "sam@example.com"
   behance:
   bitbucket: 
   dribbble: 
-  facebook: 
+  facebook: "seiji.takahashi92"
   flickr: 
   github: "timakin"
   google_plus: 
@@ -36,7 +34,7 @@ theme:
   stack_exchange:  # full URL
   steam: 
   tumblr: 
-  twitter: "twitter/timadayon"
+  twitter: "timadayon"
   wordpress: 
   youtube: 
   
