@@ -8,7 +8,7 @@ theme:
   title: timakin.log
   avatar: butaman.jpeg
   gravatar: # email md5 hash
-  description: "エンジニアtimakin's site" # used by search engines
+  description: "timakinのブログ" # used by search engines
   
   # Header and footer text
   header_text: >
