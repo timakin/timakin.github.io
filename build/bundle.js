@@ -20567,6 +20567,12 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(159);
+
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+	var Link = _reactRouter2['default'].Link;
+
 	var TopPage = (function (_React$Component) {
 	    _inherits(TopPage, _React$Component);
 
@@ -20582,6 +20588,11 @@
 	            return _react2['default'].createElement(
 	                'div',
 	                null,
+	                _react2['default'].createElement(
+	                    Link,
+	                    { to: 'github' },
+	                    'github'
+	                ),
 	                _react2['default'].createElement(
 	                    'h1',
 	                    null,
