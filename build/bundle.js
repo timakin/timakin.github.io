@@ -78,7 +78,7 @@
 	    _react2['default'].createElement(Route, { name: 'github', path: '/portfolio/github', handler: _componentsPortfolioGithub2['default'] })
 	);
 
-	_reactRouter2['default'].run(routes, function (Handler) {
+	_reactRouter2['default'].run(routes, _reactRouter2['default'].HistoryLocation, function (Handler) {
 	    _react2['default'].render(_react2['default'].createElement(Handler, null), document.getElementById('content'));
 	});
 
