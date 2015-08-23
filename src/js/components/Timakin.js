@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import TopPage from './TopPage/TopPage';
 import Router from 'react-router'; 
 var { DefaultRoute, Link, Route, RouteHandler } = Router;
 

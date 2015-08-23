@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'react-router';
 var {Link} = Router;
 
-export default class TopPage extends React.Component {
+export default class Home extends React.Component {
     render() {
         return(
            <div>
