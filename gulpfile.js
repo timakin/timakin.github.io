@@ -8,6 +8,3 @@ gulp.task('build:js', function() {
         .pipe(gulp.dest(''))
 });
 
-gulp.task('watch', ['build:js'], function(){
-    gulp.watch('./src/js/**/*.js', ['build:js']);
-});

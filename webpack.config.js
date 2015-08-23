@@ -3,6 +3,7 @@ module.exports = {
     output: {
         filename: './build/bundle.js'
     },
+    watch: true,
     module: {
         loaders: [
             {
