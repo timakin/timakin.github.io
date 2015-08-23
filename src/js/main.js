@@ -2,6 +2,6 @@ var React = require('react');
 var TopPage = require('./components/TopPage/TopPage');
 
 React.render(
-    <TopPage />
+    <TopPage />,
     document.getElementById('content')
 );
