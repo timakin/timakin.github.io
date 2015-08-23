@@ -1,5 +1,7 @@
-var React = require('react');
-var TopPage = require('./components/TopPage/TopPage');
+import React from 'react';
+import TopPage from './components/TopPage/TopPage';
+import Router from 'react-router'; 
+var { DefaultRoute, Link, Route, RouteHandler } = Router;
 
 React.render(
     <TopPage />,
