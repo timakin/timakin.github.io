@@ -14,7 +14,6 @@ const history = new HashHistory();
 export default class Root extends Component {
     render() {
         return (
-            <div>
                 <Provider store={store}>
                     {() => 
                         <Router history={history}>
@@ -25,7 +24,6 @@ export default class Root extends Component {
                         </Router>
                     }
                 </Provider>
-            </div>
         );
     }
 }
