@@ -11,7 +11,7 @@ export default class App extends Component {
             <div>
                 <header><h2>timakinのほ〜むぺ〜じへっだ〜</h2></header>
                 <h1>こんにちはこんにちは！</h1>
-                <RouteHandler/>
+                <div>{this.props.children}</div>
                 <footer><h2>timakinのほ〜むぺ〜じふった〜</h2></footer>
             </div>
         );
