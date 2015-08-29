@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import Router from 'react-router'
 import { Provider } from 'react-redux';
-import Timakin from './Timakin';
+import BrowserHistory from 'react-router/lib/BrowserHistory';
+import HashHistory from 'react-router/lib/HashHistory';
 import configureStore from '../store/configureStore';
+import routes from './routes';
 
 const store = configureStore();
+const history = new HashHistory();
+const rootElement = (
+    <Provider store={store}>
+        {() => <Router history={history} routes={routes} />}
+    </Provider>
+);
 
-export default class Root extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        {() => <Timakin />}
-      </Provider>
-    );
-  }
-}
+export default rootElement;
