@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
-import Router from 'react-router'
+import { Router, Route, Redirect } from 'react-router'
 import { Provider } from 'react-redux';
 import BrowserHistory from 'react-router/lib/BrowserHistory';
 import HashHistory from 'react-router/lib/HashHistory';
 import configureStore from '../store/configureStore';
-import routes from './routes';
+
+import App from '../components/App';
+import Home from '../components/Home/Home';
 
 const store = configureStore();
 const history = new HashHistory();
-const rootElement = (
-    <Provider store={store}>
-        {() => <Router history={history} routes={routes} />}
-    </Provider>
-);
 
-export default rootElement;
+export default class Root extends Component {
+    render() {
+        return (
+            <div>
+                <Provider store={store}>
+                    {() => 
+                        <Router history={history}>
+                            <Route name="app" component={App}>
+                                <Route name="home" path="home" component={Home} />
+                                <Redirect path="/" to="home" />
+                            </Route>
+                        </Router>
+                    }
+                </Provider>
+            </div>
+        );
+    }
+}
+

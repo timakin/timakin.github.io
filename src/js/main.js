@@ -1,6 +1,6 @@
 'use strict';
 
 import React from 'react';
-import rootElement from './containers/Root';
+import Root from './containers/Root';
 
-React.render(rootElement, document.getElementById('content'));
+React.render(<Root/>, document.getElementById('content'));
