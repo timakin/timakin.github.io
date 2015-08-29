@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Router from 'react-router';
 import CSS from '../../../css/home/home.css';
 var {Link} = Router;
 
-export default class Home extends React.Component {
+export default class Home extends Component {
     render() {
         return(
            <div className={CSS.home}>
