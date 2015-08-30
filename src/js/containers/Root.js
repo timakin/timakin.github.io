@@ -7,6 +7,7 @@ import configureStore from '../store/configureStore';
 
 import App from '../components/App';
 import Home from '../components/Home/Home';
+import Github from '../components/Portfolio/Github';
 
 const store = configureStore();
 const history = new HashHistory();
@@ -19,6 +20,7 @@ export default class Root extends Component {
                         <Router history={history}>
                             <Route name="app" component={App}>
                                 <Route name="home" path="home" component={Home} />
+                                <Route name="github" path="github" component={Github} />
                                 <Redirect path="/" to="home" />
                             </Route>
                         </Router>

@@ -9,7 +9,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                loaders: ['react-hot', 'babel']
+                loaders: ['react-hot', 'jsx', 'babel']
             },
             {
                 test: /\.css$/,
