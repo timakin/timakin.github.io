@@ -20479,17 +20479,9 @@
 
 	var _storeConfigureStore2 = _interopRequireDefault(_storeConfigureStore);
 
-	var _componentsApp = __webpack_require__(212);
+	var _App = __webpack_require__(212);
 
-	var _componentsApp2 = _interopRequireDefault(_componentsApp);
-
-	var _componentsHomeHome = __webpack_require__(213);
-
-	var _componentsHomeHome2 = _interopRequireDefault(_componentsHomeHome);
-
-	var _componentsPortfolioGithub = __webpack_require__(218);
-
-	var _componentsPortfolioGithub2 = _interopRequireDefault(_componentsPortfolioGithub);
+	var _App2 = _interopRequireDefault(_App);
 
 	var store = (0, _storeConfigureStore2['default'])();
 	var history = new _reactRouterLibHashHistory2['default']();
@@ -20497,10 +20489,10 @@
 	var Root = (function (_Component) {
 	    _inherits(Root, _Component);
 
-	    function Root() {
+	    function Root(props, context) {
 	        _classCallCheck(this, Root);
 
-	        _get(Object.getPrototypeOf(Root.prototype), 'constructor', this).apply(this, arguments);
+	        _get(Object.getPrototypeOf(Root.prototype), 'constructor', this).call(this, props, context);
 	    }
 
 	    _createClass(Root, [{
@@ -20510,17 +20502,7 @@
 	                _reactRedux.Provider,
 	                { store: store },
 	                function () {
-	                    return _react2['default'].createElement(
-	                        _reactRouter.Router,
-	                        { history: history },
-	                        _react2['default'].createElement(
-	                            _reactRouter.Route,
-	                            { name: 'app', component: _componentsApp2['default'] },
-	                            _react2['default'].createElement(_reactRouter.Route, { name: 'home', path: 'home', component: _componentsHomeHome2['default'] }),
-	                            _react2['default'].createElement(_reactRouter.Route, { name: 'github', path: 'github', component: _componentsPortfolioGithub2['default'] }),
-	                            _react2['default'].createElement(_reactRouter.Redirect, { path: '/', to: 'home' })
-	                        )
-	                    );
+	                    return _react2['default'].createElement(_App2['default'], null);
 	                }
 	            );
 	        }
@@ -24848,27 +24830,30 @@
 	});
 	exports['default'] = configureStore;
 
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	var _reduxThunk = __webpack_require__(208);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reducers = __webpack_require__(209);
+	var _reducersIndex = __webpack_require__(209);
 
-	var reducers = _interopRequireWildcard(_reducers);
+	var _reducersIndex2 = _interopRequireDefault(_reducersIndex);
 
 	var _redux = __webpack_require__(194);
 
-	var reducer = (0, _redux.combineReducers)(reducers);
-	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2['default'])(_redux.createStore);
-
-	// Creates a preconfigured store for this example.
-
 	function configureStore(initialState) {
-	  return createStoreWithMiddleware(reducer, initialState);
+	  var store = (0, _redux.createStore)(_reducersIndex2['default'], initialState);
+
+	  if (false) {
+	    // Enable Webpack hot module replacement for reducers
+	    module.hot.accept('../reducers', function () {
+	      var nextRootReducer = require('../reducers/index');
+	      store.replaceReducer(nextRootReducer);
+	    });
+	  }
+
+	  return store;
 	}
 
 	module.exports = exports['default'];
@@ -24913,12 +24898,12 @@
 
 	var _redux = __webpack_require__(194);
 
-	var _portfolios = __webpack_require__(210);
+	var _portfolio = __webpack_require__(210);
 
-	var _portfolios2 = _interopRequireDefault(_portfolios);
+	var _portfolio2 = _interopRequireDefault(_portfolio);
 
 	var rootReducer = (0, _redux.combineReducers)({
-	    portfolios: _portfolios2['default']
+	    portfolio: _portfolio2['default']
 	});
 
 	exports['default'] = rootReducer;
@@ -24937,7 +24922,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports["default"] = portfolios;
+	exports["default"] = portfolio;
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
 
@@ -24949,16 +24934,17 @@
 	    description: "no repos is loaded"
 	}];
 
-	function portfolios(state, action) {
+	function portfolio(state, action) {
 	    if (state === undefined) state = initialState;
 
 	    switch (action.type) {
 	        case _constantsActionType.LOAD_GITHUB_REPOS:
-	            return [{
+	            console.log("yo");
+	            return [].concat(_toConsumableArray(state), [{
 	                name: "yoyo",
 	                url: "http://google.com",
 	                description: "successfully loaded"
-	            }].concat(_toConsumableArray(state));
+	            }]);
 
 	        default:
 	            return state;
@@ -24967,7 +24953,7 @@
 
 	module.exports = exports["default"];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "portfolios.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "portfolio.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 211 */
@@ -24994,8 +24980,53 @@
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _redux = __webpack_require__(194);
+
+	var _reactRedux = __webpack_require__(186);
+
+	var _componentsRootComponent = __webpack_require__(213);
+
+	var _componentsRootComponent2 = _interopRequireDefault(_componentsRootComponent);
+
+	var _actionsPortfolio = __webpack_require__(214);
+
+	var PortfolioActions = _interopRequireWildcard(_actionsPortfolio);
+
+	function mapStateToProps(state) {
+	  return {
+	    portfolio: state.portfolio
+	  };
+	}
+
+	function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)(PortfolioActions, dispatch);
+	}
+
+	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_componentsRootComponent2['default']);
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "App.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -25017,63 +25048,92 @@
 
 	var _reactRouter = __webpack_require__(158);
 
-	var App = (function (_Component) {
-	    _inherits(App, _Component);
+	var _App = __webpack_require__(221);
 
-	    function App(props, context) {
-	        _classCallCheck(this, App);
+	var _App2 = _interopRequireDefault(_App);
 
-	        _get(Object.getPrototypeOf(App.prototype), 'constructor', this).call(this, props, context);
+	var _HomeHome = __webpack_require__(215);
+
+	var _HomeHome2 = _interopRequireDefault(_HomeHome);
+
+	var _PortfolioGithub = __webpack_require__(220);
+
+	var _PortfolioGithub2 = _interopRequireDefault(_PortfolioGithub);
+
+	var _reactRouterLibBrowserHistory = __webpack_require__(204);
+
+	var _reactRouterLibBrowserHistory2 = _interopRequireDefault(_reactRouterLibBrowserHistory);
+
+	var _reactRouterLibHashHistory = __webpack_require__(206);
+
+	var _reactRouterLibHashHistory2 = _interopRequireDefault(_reactRouterLibHashHistory);
+
+	var history = new _reactRouterLibHashHistory2['default']();
+
+	var RootComponent = (function (_Component) {
+	    _inherits(RootComponent, _Component);
+
+	    function RootComponent(props, context) {
+	        _classCallCheck(this, RootComponent);
+
+	        _get(Object.getPrototypeOf(RootComponent.prototype), 'constructor', this).call(this, props, context);
 	    }
 
-	    _createClass(App, [{
+	    _createClass(RootComponent, [{
 	        key: 'render',
 	        value: function render() {
+	            var routerState = this.props.initialState || this.props;
 	            return _react2['default'].createElement(
-	                'div',
-	                null,
+	                _reactRouter.Router,
+	                _extends({ history: history }, routerState),
 	                _react2['default'].createElement(
-	                    'header',
-	                    null,
-	                    _react2['default'].createElement(
-	                        'h2',
-	                        null,
-	                        'timakinのほ〜むぺ〜じへっだ〜'
-	                    )
-	                ),
-	                _react2['default'].createElement(
-	                    'h1',
-	                    null,
-	                    'こんにちはこんにちは！'
-	                ),
-	                _react2['default'].createElement(
-	                    'div',
-	                    null,
-	                    this.props.children
-	                ),
-	                _react2['default'].createElement(
-	                    'footer',
-	                    null,
-	                    _react2['default'].createElement(
-	                        'h2',
-	                        null,
-	                        'timakinのほ〜むぺ〜じふった〜'
-	                    )
+	                    _reactRouter.Route,
+	                    { name: 'app', component: _App2['default'] },
+	                    _react2['default'].createElement(_reactRouter.Route, { name: 'home', path: 'home', component: _HomeHome2['default'] }),
+	                    _react2['default'].createElement(_reactRouter.Route, { name: 'github', path: 'github', component: _PortfolioGithub2['default'] }),
+	                    _react2['default'].createElement(_reactRouter.Redirect, { path: '/', to: 'home' })
 	                )
 	            );
 	        }
 	    }]);
 
-	    return App;
+	    return RootComponent;
 	})(_react.Component);
 
-	exports['default'] = App;
+	exports['default'] = RootComponent;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "App.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "RootComponent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 213 */
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.loadGithubRepos = loadGithubRepos;
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+	var _constantsActionType = __webpack_require__(211);
+
+	var types = _interopRequireWildcard(_constantsActionType);
+
+	/* Action Creators */
+
+	function loadGithubRepos() {
+	    return { type: types.LOAD_GITHUB_REPOS };
+	}
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "portfolio.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25100,7 +25160,7 @@
 
 	var _reactRouter = __webpack_require__(158);
 
-	var _cssHomeHomeCss = __webpack_require__(214);
+	var _cssHomeHomeCss = __webpack_require__(216);
 
 	var _cssHomeHomeCss2 = _interopRequireDefault(_cssHomeHomeCss);
 
@@ -25142,16 +25202,16 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Home.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 214 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(215);
+	var content = __webpack_require__(217);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(217)(content, {});
+	var update = __webpack_require__(219)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -25168,10 +25228,10 @@
 	}
 
 /***/ },
-/* 215 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(216)();
+	exports = module.exports = __webpack_require__(218)();
 	// imports
 
 
@@ -25184,7 +25244,7 @@
 	};
 
 /***/ },
-/* 216 */
+/* 218 */
 /***/ function(module, exports) {
 
 	/*
@@ -25240,7 +25300,7 @@
 
 
 /***/ },
-/* 217 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -25465,7 +25525,7 @@
 
 
 /***/ },
-/* 218 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25493,13 +25553,24 @@
 	var Github = (function (_React$Component) {
 	    _inherits(Github, _React$Component);
 
-	    function Github() {
+	    function Github(props, context) {
 	        _classCallCheck(this, Github);
 
-	        _get(Object.getPrototypeOf(Github.prototype), 'constructor', this).apply(this, arguments);
+	        _get(Object.getPrototypeOf(Github.prototype), 'constructor', this).call(this, props, context);
 	    }
 
 	    _createClass(Github, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _props = this.props;
+	            var loadGithubRepos = _props.loadGithubRepos;
+	            var portfolio = _props.portfolio;
+
+	            var result = loadGithubRepos;
+	            console.log(portfolio);
+	            console.log(result);
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2['default'].createElement(
@@ -25521,6 +25592,93 @@
 	module.exports = exports['default'];
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Github.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _redux = __webpack_require__(194);
+
+	var _reactRedux = __webpack_require__(186);
+
+	var _reactRouter = __webpack_require__(158);
+
+	var App = (function (_Component) {
+	    _inherits(App, _Component);
+
+	    function App(props, context) {
+	        _classCallCheck(this, App);
+
+	        _get(Object.getPrototypeOf(App.prototype), 'constructor', this).call(this, props, context);
+	    }
+
+	    _createClass(App, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2['default'].createElement(
+	                'div',
+	                null,
+	                _react2['default'].createElement(
+	                    'header',
+	                    null,
+	                    _react2['default'].createElement(
+	                        'h2',
+	                        null,
+	                        'timakinのほ〜むぺ〜じへっだ〜'
+	                    )
+	                ),
+	                _react2['default'].createElement(
+	                    'h1',
+	                    null,
+	                    'こんにちはこんにちは！'
+	                ),
+	                _react2['default'].createElement(
+	                    'div',
+	                    null,
+	                    this.props.children
+	                ),
+	                _react2['default'].createElement(
+	                    'footer',
+	                    null,
+	                    _react2['default'].createElement(
+	                        'h2',
+	                        null,
+	                        'timakinのほ〜むぺ〜じふった〜'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return App;
+	})(_react.Component);
+
+	exports['default'] = App;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "App.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }
 /******/ ]);

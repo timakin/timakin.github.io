@@ -6,14 +6,15 @@ const initialState = [{
     description: "no repos is loaded"
 }];
 
-export default function portfolios(state = initialState, action) {
+export default function portfolio(state = initialState, action) {
     switch(action.type) {
     case LOAD_GITHUB_REPOS:
-        return [{
+        console.log("yo");
+        return [...state, {
             name: "yoyo",
             url: "http://google.com",
             description: "successfully loaded"
-        }, ...state];
+        }];
 
     default:
         return state;
