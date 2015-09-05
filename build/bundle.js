@@ -54,11 +54,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _containersRoot = __webpack_require__(157);
+	var _componentsRootComponent = __webpack_require__(157);
 
-	var _containersRoot2 = _interopRequireDefault(_containersRoot);
+	var _componentsRootComponent2 = _interopRequireDefault(_componentsRootComponent);
 
-	_react2['default'].render(_react2['default'].createElement(_containersRoot2['default'], null), document.getElementById('content'));
+	_react2['default'].render(_react2['default'].createElement(_componentsRootComponent2['default'], null), document.getElementById('content'));
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "main.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
@@ -20465,56 +20465,60 @@
 
 	var _reactRouter = __webpack_require__(158);
 
-	var _reactRedux = __webpack_require__(186);
-
-	var _reactRouterLibBrowserHistory = __webpack_require__(204);
-
-	var _reactRouterLibBrowserHistory2 = _interopRequireDefault(_reactRouterLibBrowserHistory);
-
-	var _reactRouterLibHashHistory = __webpack_require__(206);
-
-	var _reactRouterLibHashHistory2 = _interopRequireDefault(_reactRouterLibHashHistory);
-
-	var _storeConfigureStore = __webpack_require__(207);
-
-	var _storeConfigureStore2 = _interopRequireDefault(_storeConfigureStore);
-
-	var _App = __webpack_require__(212);
+	var _App = __webpack_require__(186);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var store = (0, _storeConfigureStore2['default'])();
-	var history = new _reactRouterLibHashHistory2['default']();
+	var _HomeHome = __webpack_require__(205);
 
-	var Root = (function (_Component) {
-	    _inherits(Root, _Component);
+	var _HomeHome2 = _interopRequireDefault(_HomeHome);
 
-	    function Root(props, context) {
-	        _classCallCheck(this, Root);
+	var _PortfolioGithub = __webpack_require__(210);
 
-	        _get(Object.getPrototypeOf(Root.prototype), 'constructor', this).call(this, props, context);
+	var _PortfolioGithub2 = _interopRequireDefault(_PortfolioGithub);
+
+	var _reactRouterLibBrowserHistory = __webpack_require__(211);
+
+	var _reactRouterLibBrowserHistory2 = _interopRequireDefault(_reactRouterLibBrowserHistory);
+
+	var _reactRouterLibHashHistory = __webpack_require__(213);
+
+	var _reactRouterLibHashHistory2 = _interopRequireDefault(_reactRouterLibHashHistory);
+
+	var RootComponent = (function (_Component) {
+	    _inherits(RootComponent, _Component);
+
+	    function RootComponent() {
+	        _classCallCheck(this, RootComponent);
+
+	        _get(Object.getPrototypeOf(RootComponent.prototype), 'constructor', this).apply(this, arguments);
 	    }
 
-	    _createClass(Root, [{
+	    _createClass(RootComponent, [{
 	        key: 'render',
 	        value: function render() {
+	            var history = new _reactRouterLibHashHistory2['default']();
 	            return _react2['default'].createElement(
-	                _reactRedux.Provider,
-	                { store: store },
-	                function () {
-	                    return _react2['default'].createElement(_App2['default'], null);
-	                }
+	                _reactRouter.Router,
+	                { history: history },
+	                _react2['default'].createElement(
+	                    _reactRouter.Route,
+	                    { name: 'app', component: _App2['default'] },
+	                    _react2['default'].createElement(_reactRouter.Route, { name: 'home', path: 'home', component: _HomeHome2['default'] }),
+	                    _react2['default'].createElement(_reactRouter.Route, { name: 'github', path: 'github', component: _PortfolioGithub2['default'] }),
+	                    _react2['default'].createElement(_reactRouter.Redirect, { path: '/', to: 'home' })
+	                )
 	            );
 	        }
 	    }]);
 
-	    return Root;
+	    return RootComponent;
 	})(_react.Component);
 
-	exports['default'] = Root;
+	exports['default'] = RootComponent;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Root.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "RootComponent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 158 */
@@ -23252,6 +23256,662 @@
 /* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _redux = __webpack_require__(187);
+
+	var _reactRedux = __webpack_require__(196);
+
+	var _reactRouter = __webpack_require__(158);
+
+	var App = (function (_Component) {
+	    _inherits(App, _Component);
+
+	    function App(props) {
+	        _classCallCheck(this, App);
+
+	        _get(Object.getPrototypeOf(App.prototype), 'constructor', this).call(this, props);
+	    }
+
+	    _createClass(App, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2['default'].createElement(
+	                'div',
+	                null,
+	                _react2['default'].createElement(
+	                    'header',
+	                    null,
+	                    _react2['default'].createElement(
+	                        'h2',
+	                        null,
+	                        'timakinのほ〜むぺ〜じへっだ〜'
+	                    )
+	                ),
+	                _react2['default'].createElement(
+	                    'h1',
+	                    null,
+	                    'こんにちはこんにちは！'
+	                ),
+	                _react2['default'].createElement(
+	                    'div',
+	                    null,
+	                    this.props.children
+	                ),
+	                _react2['default'].createElement(
+	                    'footer',
+	                    null,
+	                    _react2['default'].createElement(
+	                        'h2',
+	                        null,
+	                        'timakinのほ〜むぺ〜じふった〜'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return App;
+	})(_react.Component);
+
+	exports['default'] = App;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "App.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 187 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _createStore = __webpack_require__(188);
+
+	var _createStore2 = _interopRequireDefault(_createStore);
+
+	var _utilsCombineReducers = __webpack_require__(190);
+
+	var _utilsCombineReducers2 = _interopRequireDefault(_utilsCombineReducers);
+
+	var _utilsBindActionCreators = __webpack_require__(193);
+
+	var _utilsBindActionCreators2 = _interopRequireDefault(_utilsBindActionCreators);
+
+	var _utilsApplyMiddleware = __webpack_require__(194);
+
+	var _utilsApplyMiddleware2 = _interopRequireDefault(_utilsApplyMiddleware);
+
+	var _utilsCompose = __webpack_require__(195);
+
+	var _utilsCompose2 = _interopRequireDefault(_utilsCompose);
+
+	exports.createStore = _createStore2['default'];
+	exports.combineReducers = _utilsCombineReducers2['default'];
+	exports.bindActionCreators = _utilsBindActionCreators2['default'];
+	exports.applyMiddleware = _utilsApplyMiddleware2['default'];
+	exports.compose = _utilsCompose2['default'];
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports['default'] = createStore;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _utilsIsPlainObject = __webpack_require__(189);
+
+	var _utilsIsPlainObject2 = _interopRequireDefault(_utilsIsPlainObject);
+
+	/**
+	 * These are private action types reserved by Redux.
+	 * For any unknown actions, you must return the current state.
+	 * If the current state is undefined, you must return the initial state.
+	 * Do not reference these action types directly in your code.
+	 */
+	var ActionTypes = {
+	  INIT: '@@redux/INIT'
+	};
+
+	exports.ActionTypes = ActionTypes;
+	/**
+	 * Creates a Redux store that holds the state tree.
+	 * The only way to change the data in the store is to call `dispatch()` on it.
+	 *
+	 * There should only be a single store in your app. To specify how different
+	 * parts of the state tree respond to actions, you may combine several reducers
+	 * into a single reducer function by using `combineReducers`.
+	 *
+	 * @param {Function} reducer A function that returns the next state tree, given
+	 * the current state tree and the action to handle.
+	 *
+	 * @param {any} [initialState] The initial state. You may optionally specify it
+	 * to hydrate the state from the server in universal apps, or to restore a
+	 * previously serialized user session.
+	 * If you use `combineReducers` to produce the root reducer function, this must be
+	 * an object with the same shape as `combineReducers` keys.
+	 *
+	 * @returns {Store} A Redux store that lets you read the state, dispatch actions
+	 * and subscribe to changes.
+	 */
+
+	function createStore(reducer, initialState) {
+	  if (typeof reducer !== 'function') {
+	    throw new Error('Expected the reducer to be a function.');
+	  }
+
+	  var currentReducer = reducer;
+	  var currentState = initialState;
+	  var listeners = [];
+	  var isDispatching = false;
+
+	  /**
+	   * Reads the state tree managed by the store.
+	   *
+	   * @returns {any} The current state tree of your application.
+	   */
+	  function getState() {
+	    return currentState;
+	  }
+
+	  /**
+	   * Adds a change listener. It will be called any time an action is dispatched,
+	   * and some part of the state tree may potentially have changed. You may then
+	   * call `getState()` to read the current state tree inside the callback.
+	   *
+	   * @param {Function} listener A callback to be invoked on every dispatch.
+	   * @returns {Function} A function to remove this change listener.
+	   */
+	  function subscribe(listener) {
+	    listeners.push(listener);
+
+	    return function unsubscribe() {
+	      var index = listeners.indexOf(listener);
+	      listeners.splice(index, 1);
+	    };
+	  }
+
+	  /**
+	   * Dispatches an action. It is the only way to trigger a state change.
+	   *
+	   * The `reducer` function, used to create the store, will be called with the
+	   * current state tree and the given `action`. Its return value will
+	   * be considered the **next** state of the tree, and the change listeners
+	   * will be notified.
+	   *
+	   * The base implementation only supports plain object actions. If you want to
+	   * dispatch a Promise, an Observable, a thunk, or something else, you need to
+	   * wrap your store creating function into the corresponding middleware. For
+	   * example, see the documentation for the `redux-thunk` package. Even the
+	   * middleware will eventually dispatch plain object actions using this method.
+	   *
+	   * @param {Object} action A plain object representing “what changed”. It is
+	   * a good idea to keep actions serializable so you can record and replay user
+	   * sessions, or use the time travelling `redux-devtools`.
+	   *
+	   * @returns {Object} For convenience, the same action object you dispatched.
+	   *
+	   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
+	   * return something else (for example, a Promise you can await).
+	   */
+	  function dispatch(action) {
+	    if (!_utilsIsPlainObject2['default'](action)) {
+	      throw new Error('Actions must be plain objects. Use custom middleware for async actions.');
+	    }
+
+	    if (isDispatching) {
+	      throw new Error('Reducers may not dispatch actions.');
+	    }
+
+	    try {
+	      isDispatching = true;
+	      currentState = currentReducer(currentState, action);
+	    } finally {
+	      isDispatching = false;
+	    }
+
+	    listeners.slice().forEach(function (listener) {
+	      return listener();
+	    });
+	    return action;
+	  }
+
+	  /**
+	   * Returns the reducer currently used by the store to calculate the state.
+	   *
+	   * It is likely that you will only need this function if you implement a hot
+	   * reloading mechanism for Redux.
+	   *
+	   * @returns {Function} The reducer used by the current store.
+	   */
+	  function getReducer() {
+	    return currentReducer;
+	  }
+
+	  /**
+	   * Replaces the reducer currently used by the store to calculate the state.
+	   *
+	   * You might need this if your app implements code splitting and you want to
+	   * load some of the reducers dynamically. You might also need this if you
+	   * implement a hot reloading mechanism for Redux.
+	   *
+	   * @param {Function} nextReducer The reducer for the store to use instead.
+	   * @returns {void}
+	   */
+	  function replaceReducer(nextReducer) {
+	    currentReducer = nextReducer;
+	    dispatch({ type: ActionTypes.INIT });
+	  }
+
+	  // When a store is created, an "INIT" action is dispatched so that every
+	  // reducer returns their initial state. This effectively populates
+	  // the initial state tree.
+	  dispatch({ type: ActionTypes.INIT });
+
+	  return {
+	    dispatch: dispatch,
+	    subscribe: subscribe,
+	    getState: getState,
+	    getReducer: getReducer,
+	    replaceReducer: replaceReducer
+	  };
+	}
+
+/***/ },
+/* 189 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports['default'] = isPlainObject;
+	var fnToString = function fnToString(fn) {
+	  return Function.prototype.toString.call(fn);
+	};
+
+	/**
+	 * @param {any} obj The object to inspect.
+	 * @returns {boolean} True if the argument appears to be a plain object.
+	 */
+
+	function isPlainObject(obj) {
+	  if (!obj || typeof obj !== 'object') {
+	    return false;
+	  }
+
+	  var proto = typeof obj.constructor === 'function' ? Object.getPrototypeOf(obj) : Object.prototype;
+
+	  if (proto === null) {
+	    return true;
+	  }
+
+	  var constructor = proto.constructor;
+
+	  return typeof constructor === 'function' && constructor instanceof constructor && fnToString(constructor) === fnToString(Object);
+	}
+
+	module.exports = exports['default'];
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+	exports['default'] = combineReducers;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _createStore = __webpack_require__(188);
+
+	var _utilsIsPlainObject = __webpack_require__(189);
+
+	var _utilsIsPlainObject2 = _interopRequireDefault(_utilsIsPlainObject);
+
+	var _utilsMapValues = __webpack_require__(191);
+
+	var _utilsMapValues2 = _interopRequireDefault(_utilsMapValues);
+
+	var _utilsPick = __webpack_require__(192);
+
+	var _utilsPick2 = _interopRequireDefault(_utilsPick);
+
+	function getErrorMessage(key, action) {
+	  var actionType = action && action.type;
+	  var actionName = actionType && '"' + actionType.toString() + '"' || 'an action';
+
+	  return 'Reducer "' + key + '" returned undefined handling ' + actionName + '. ' + 'To ignore an action, you must explicitly return the previous state.';
+	}
+
+	function verifyStateShape(initialState, currentState) {
+	  var reducerKeys = Object.keys(currentState);
+
+	  if (reducerKeys.length === 0) {
+	    console.error('Store does not have a valid reducer. Make sure the argument passed ' + 'to combineReducers is an object whose values are reducers.');
+	    return;
+	  }
+
+	  if (!_utilsIsPlainObject2['default'](initialState)) {
+	    console.error('initialState has unexpected type of "' + ({}).toString.call(initialState).match(/\s([a-z|A-Z]+)/)[1] + '". Expected initialState to be an object with the following ' + ('keys: "' + reducerKeys.join('", "') + '"'));
+	    return;
+	  }
+
+	  var unexpectedKeys = Object.keys(initialState).filter(function (key) {
+	    return reducerKeys.indexOf(key) < 0;
+	  });
+
+	  if (unexpectedKeys.length > 0) {
+	    console.error('Unexpected ' + (unexpectedKeys.length > 1 ? 'keys' : 'key') + ' ' + ('"' + unexpectedKeys.join('", "') + '" in initialState will be ignored. ') + ('Expected to find one of the known reducer keys instead: "' + reducerKeys.join('", "') + '"'));
+	  }
+	}
+
+	/**
+	 * Turns an object whose values are different reducer functions, into a single
+	 * reducer function. It will call every child reducer, and gather their results
+	 * into a single state object, whose keys correspond to the keys of the passed
+	 * reducer functions.
+	 *
+	 * @param {Object} reducers An object whose values correspond to different
+	 * reducer functions that need to be combined into one. One handy way to obtain
+	 * it is to use ES6 `import * as reducers` syntax. The reducers may never return
+	 * undefined for any action. Instead, they should return their initial state
+	 * if the state passed to them was undefined, and the current state for any
+	 * unrecognized action.
+	 *
+	 * @returns {Function} A reducer function that invokes every reducer inside the
+	 * passed object, and builds a state object with the same shape.
+	 */
+
+	function combineReducers(reducers) {
+	  var finalReducers = _utilsPick2['default'](reducers, function (val) {
+	    return typeof val === 'function';
+	  });
+
+	  Object.keys(finalReducers).forEach(function (key) {
+	    var reducer = finalReducers[key];
+	    if (typeof reducer(undefined, { type: _createStore.ActionTypes.INIT }) === 'undefined') {
+	      throw new Error('Reducer "' + key + '" returned undefined during initialization. ' + 'If the state passed to the reducer is undefined, you must ' + 'explicitly return the initial state. The initial state may ' + 'not be undefined.');
+	    }
+
+	    var type = Math.random().toString(36).substring(7).split('').join('.');
+	    if (typeof reducer(undefined, { type: type }) === 'undefined') {
+	      throw new Error('Reducer "' + key + '" returned undefined when probed with a random type. ' + ('Don\'t try to handle ' + _createStore.ActionTypes.INIT + ' or other actions in "redux/*" ') + 'namespace. They are considered private. Instead, you must return the ' + 'current state for any unknown actions, unless it is undefined, ' + 'in which case you must return the initial state, regardless of the ' + 'action type. The initial state may not be undefined.');
+	    }
+	  });
+
+	  var defaultState = _utilsMapValues2['default'](finalReducers, function () {
+	    return undefined;
+	  });
+	  var stateShapeVerified;
+
+	  return function combination(state, action) {
+	    if (state === undefined) state = defaultState;
+
+	    var finalState = _utilsMapValues2['default'](finalReducers, function (reducer, key) {
+	      var newState = reducer(state[key], action);
+	      if (typeof newState === 'undefined') {
+	        throw new Error(getErrorMessage(key, action));
+	      }
+	      return newState;
+	    });
+
+	    if (
+	    // Node-like CommonJS environments (Browserify, Webpack)
+	    typeof process !== 'undefined' && typeof process.env !== 'undefined' && process.env.NODE_ENV !== 'production' ||
+	    // React Native
+	    typeof __DEV__ !== 'undefined' && __DEV__ //eslint-disable-line no-undef
+	    ) {
+	      if (!stateShapeVerified) {
+	        verifyStateShape(state, finalState);
+	        stateShapeVerified = true;
+	      }
+	    }
+
+	    return finalState;
+	  };
+	}
+
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 191 */
+/***/ function(module, exports) {
+
+	/**
+	 * Applies a function to every key-value pair inside an object.
+	 *
+	 * @param {Object} obj The source object.
+	 * @param {Function} fn The mapper function taht receives the value and the key.
+	 * @returns {Object} A new object that contains the mapped values for the keys.
+	 */
+	"use strict";
+
+	exports.__esModule = true;
+	exports["default"] = mapValues;
+
+	function mapValues(obj, fn) {
+	  return Object.keys(obj).reduce(function (result, key) {
+	    result[key] = fn(obj[key], key);
+	    return result;
+	  }, {});
+	}
+
+	module.exports = exports["default"];
+
+/***/ },
+/* 192 */
+/***/ function(module, exports) {
+
+	/**
+	 * Picks key-value pairs from an object where values satisfy a predicate.
+	 *
+	 * @param {Object} obj The object to pick from.
+	 * @param {Function} fn The predicate the values must satisfy to be copied.
+	 * @returns {Object} The object with the values that satisfied the predicate.
+	 */
+	"use strict";
+
+	exports.__esModule = true;
+	exports["default"] = pick;
+
+	function pick(obj, fn) {
+	  return Object.keys(obj).reduce(function (result, key) {
+	    if (fn(obj[key])) {
+	      result[key] = obj[key];
+	    }
+	    return result;
+	  }, {});
+	}
+
+	module.exports = exports["default"];
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports['default'] = bindActionCreators;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _utilsMapValues = __webpack_require__(191);
+
+	var _utilsMapValues2 = _interopRequireDefault(_utilsMapValues);
+
+	function bindActionCreator(actionCreator, dispatch) {
+	  return function () {
+	    return dispatch(actionCreator.apply(undefined, arguments));
+	  };
+	}
+
+	/**
+	 * Turns an object whose values are action creators, into an object with the
+	 * same keys, but with every function wrapped into a `dispatch` call so they
+	 * may be invoked directly. This is just a convenience method, as you can call
+	 * `store.dispatch(MyActionCreators.doSomething())` yourself just fine.
+	 *
+	 * For convenience, you can also pass a single function as the first argument,
+	 * and get a function in return.
+	 *
+	 * @param {Function|Object} actionCreators An object whose values are action
+	 * creator functions. One handy way to obtain it is to use ES6 `import * as`
+	 * syntax. You may also pass a single function.
+	 *
+	 * @param {Function} dispatch The `dispatch` function available on your Redux
+	 * store.
+	 *
+	 * @returns {Function|Object} The object mimicking the original object, but with
+	 * every action creator wrapped into the `dispatch` call. If you passed a
+	 * function as `actionCreators`, the return value will also be a single
+	 * function.
+	 */
+
+	function bindActionCreators(actionCreators, dispatch) {
+	  if (typeof actionCreators === 'function') {
+	    return bindActionCreator(actionCreators, dispatch);
+	  }
+
+	  if (typeof actionCreators !== 'object' || actionCreators == null) {
+	    throw new Error('bindActionCreators expected an object or a function, instead received ' + typeof actionCreators + '. ' + 'Did you write "import ActionCreators from" instead of "import * as ActionCreators from"?');
+	  }
+
+	  return _utilsMapValues2['default'](actionCreators, function (actionCreator) {
+	    return bindActionCreator(actionCreator, dispatch);
+	  });
+	}
+
+	module.exports = exports['default'];
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports['default'] = applyMiddleware;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _compose = __webpack_require__(195);
+
+	var _compose2 = _interopRequireDefault(_compose);
+
+	/**
+	 * Creates a store enhancer that applies middleware to the dispatch method
+	 * of the Redux store. This is handy for a variety of tasks, such as expressing
+	 * asynchronous actions in a concise manner, or logging every action payload.
+	 *
+	 * See `redux-thunk` package as an example of the Redux middleware.
+	 *
+	 * Because middleware is potentially asynchronous, this should be the first
+	 * store enhancer in the composition chain.
+	 *
+	 * Note that each middleware will be given the `dispatch` and `getState` functions
+	 * as named arguments.
+	 *
+	 * @param {...Function} middlewares The middleware chain to be applied.
+	 * @returns {Function} A store enhancer applying the middleware.
+	 */
+
+	function applyMiddleware() {
+	  for (var _len = arguments.length, middlewares = Array(_len), _key = 0; _key < _len; _key++) {
+	    middlewares[_key] = arguments[_key];
+	  }
+
+	  return function (next) {
+	    return function (reducer, initialState) {
+	      var store = next(reducer, initialState);
+	      var _dispatch = store.dispatch;
+	      var chain = [];
+
+	      var middlewareAPI = {
+	        getState: store.getState,
+	        dispatch: function dispatch(action) {
+	          return _dispatch(action);
+	        }
+	      };
+	      chain = middlewares.map(function (middleware) {
+	        return middleware(middlewareAPI);
+	      });
+	      _dispatch = _compose2['default'].apply(undefined, chain.concat([store.dispatch]));
+
+	      return _extends({}, store, {
+	        dispatch: _dispatch
+	      });
+	    };
+	  };
+	}
+
+	module.exports = exports['default'];
+
+/***/ },
+/* 195 */
+/***/ function(module, exports) {
+
+	/**
+	 * Composes functions from left to right.
+	 *
+	 * @param {...Function} funcs - The functions to compose. Each is expected to
+	 * accept a function as an argument and to return a function.
+	 * @returns {Function} A function obtained by composing functions from left to
+	 * right.
+	 */
+	"use strict";
+
+	exports.__esModule = true;
+	exports["default"] = compose;
+
+	function compose() {
+	  for (var _len = arguments.length, funcs = Array(_len), _key = 0; _key < _len; _key++) {
+	    funcs[_key] = arguments[_key];
+	  }
+
+	  return funcs.reduceRight(function (composed, f) {
+	    return f(composed);
+	  });
+	}
+
+	module.exports = exports["default"];
+
+/***/ },
+/* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	exports.__esModule = true;
@@ -23262,7 +23922,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _componentsCreateAll = __webpack_require__(187);
+	var _componentsCreateAll = __webpack_require__(197);
 
 	var _componentsCreateAll2 = _interopRequireDefault(_componentsCreateAll);
 
@@ -23274,7 +23934,7 @@
 	exports.connect = connect;
 
 /***/ },
-/* 187 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23284,11 +23944,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _createProvider = __webpack_require__(188);
+	var _createProvider = __webpack_require__(198);
 
 	var _createProvider2 = _interopRequireDefault(_createProvider);
 
-	var _createConnect = __webpack_require__(190);
+	var _createConnect = __webpack_require__(200);
 
 	var _createConnect2 = _interopRequireDefault(_createConnect);
 
@@ -23302,7 +23962,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 188 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23319,7 +23979,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var _utilsCreateStoreShape = __webpack_require__(189);
+	var _utilsCreateStoreShape = __webpack_require__(199);
 
 	var _utilsCreateStoreShape2 = _interopRequireDefault(_utilsCreateStoreShape);
 
@@ -23424,7 +24084,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 189 */
+/* 199 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -23443,7 +24103,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 190 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -23462,23 +24122,23 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var _utilsCreateStoreShape = __webpack_require__(189);
+	var _utilsCreateStoreShape = __webpack_require__(199);
 
 	var _utilsCreateStoreShape2 = _interopRequireDefault(_utilsCreateStoreShape);
 
-	var _utilsShallowEqual = __webpack_require__(191);
+	var _utilsShallowEqual = __webpack_require__(201);
 
 	var _utilsShallowEqual2 = _interopRequireDefault(_utilsShallowEqual);
 
-	var _utilsIsPlainObject = __webpack_require__(192);
+	var _utilsIsPlainObject = __webpack_require__(202);
 
 	var _utilsIsPlainObject2 = _interopRequireDefault(_utilsIsPlainObject);
 
-	var _utilsWrapActionCreators = __webpack_require__(193);
+	var _utilsWrapActionCreators = __webpack_require__(203);
 
 	var _utilsWrapActionCreators2 = _interopRequireDefault(_utilsWrapActionCreators);
 
-	var _invariant = __webpack_require__(203);
+	var _invariant = __webpack_require__(204);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -23715,7 +24375,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 191 */
+/* 201 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -23749,7 +24409,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 192 */
+/* 202 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23784,7 +24444,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 193 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23792,7 +24452,7 @@
 	exports.__esModule = true;
 	exports['default'] = wrapActionCreators;
 
-	var _redux = __webpack_require__(194);
+	var _redux = __webpack_require__(187);
 
 	function wrapActionCreators(actionCreators) {
 	  return function (dispatch) {
@@ -23803,576 +24463,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 194 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _createStore = __webpack_require__(195);
-
-	var _createStore2 = _interopRequireDefault(_createStore);
-
-	var _utilsCombineReducers = __webpack_require__(197);
-
-	var _utilsCombineReducers2 = _interopRequireDefault(_utilsCombineReducers);
-
-	var _utilsBindActionCreators = __webpack_require__(200);
-
-	var _utilsBindActionCreators2 = _interopRequireDefault(_utilsBindActionCreators);
-
-	var _utilsApplyMiddleware = __webpack_require__(201);
-
-	var _utilsApplyMiddleware2 = _interopRequireDefault(_utilsApplyMiddleware);
-
-	var _utilsCompose = __webpack_require__(202);
-
-	var _utilsCompose2 = _interopRequireDefault(_utilsCompose);
-
-	exports.createStore = _createStore2['default'];
-	exports.combineReducers = _utilsCombineReducers2['default'];
-	exports.bindActionCreators = _utilsBindActionCreators2['default'];
-	exports.applyMiddleware = _utilsApplyMiddleware2['default'];
-	exports.compose = _utilsCompose2['default'];
-
-/***/ },
-/* 195 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports['default'] = createStore;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _utilsIsPlainObject = __webpack_require__(196);
-
-	var _utilsIsPlainObject2 = _interopRequireDefault(_utilsIsPlainObject);
-
-	/**
-	 * These are private action types reserved by Redux.
-	 * For any unknown actions, you must return the current state.
-	 * If the current state is undefined, you must return the initial state.
-	 * Do not reference these action types directly in your code.
-	 */
-	var ActionTypes = {
-	  INIT: '@@redux/INIT'
-	};
-
-	exports.ActionTypes = ActionTypes;
-	/**
-	 * Creates a Redux store that holds the state tree.
-	 * The only way to change the data in the store is to call `dispatch()` on it.
-	 *
-	 * There should only be a single store in your app. To specify how different
-	 * parts of the state tree respond to actions, you may combine several reducers
-	 * into a single reducer function by using `combineReducers`.
-	 *
-	 * @param {Function} reducer A function that returns the next state tree, given
-	 * the current state tree and the action to handle.
-	 *
-	 * @param {any} [initialState] The initial state. You may optionally specify it
-	 * to hydrate the state from the server in universal apps, or to restore a
-	 * previously serialized user session.
-	 * If you use `combineReducers` to produce the root reducer function, this must be
-	 * an object with the same shape as `combineReducers` keys.
-	 *
-	 * @returns {Store} A Redux store that lets you read the state, dispatch actions
-	 * and subscribe to changes.
-	 */
-
-	function createStore(reducer, initialState) {
-	  if (typeof reducer !== 'function') {
-	    throw new Error('Expected the reducer to be a function.');
-	  }
-
-	  var currentReducer = reducer;
-	  var currentState = initialState;
-	  var listeners = [];
-	  var isDispatching = false;
-
-	  /**
-	   * Reads the state tree managed by the store.
-	   *
-	   * @returns {any} The current state tree of your application.
-	   */
-	  function getState() {
-	    return currentState;
-	  }
-
-	  /**
-	   * Adds a change listener. It will be called any time an action is dispatched,
-	   * and some part of the state tree may potentially have changed. You may then
-	   * call `getState()` to read the current state tree inside the callback.
-	   *
-	   * @param {Function} listener A callback to be invoked on every dispatch.
-	   * @returns {Function} A function to remove this change listener.
-	   */
-	  function subscribe(listener) {
-	    listeners.push(listener);
-
-	    return function unsubscribe() {
-	      var index = listeners.indexOf(listener);
-	      listeners.splice(index, 1);
-	    };
-	  }
-
-	  /**
-	   * Dispatches an action. It is the only way to trigger a state change.
-	   *
-	   * The `reducer` function, used to create the store, will be called with the
-	   * current state tree and the given `action`. Its return value will
-	   * be considered the **next** state of the tree, and the change listeners
-	   * will be notified.
-	   *
-	   * The base implementation only supports plain object actions. If you want to
-	   * dispatch a Promise, an Observable, a thunk, or something else, you need to
-	   * wrap your store creating function into the corresponding middleware. For
-	   * example, see the documentation for the `redux-thunk` package. Even the
-	   * middleware will eventually dispatch plain object actions using this method.
-	   *
-	   * @param {Object} action A plain object representing “what changed”. It is
-	   * a good idea to keep actions serializable so you can record and replay user
-	   * sessions, or use the time travelling `redux-devtools`.
-	   *
-	   * @returns {Object} For convenience, the same action object you dispatched.
-	   *
-	   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
-	   * return something else (for example, a Promise you can await).
-	   */
-	  function dispatch(action) {
-	    if (!_utilsIsPlainObject2['default'](action)) {
-	      throw new Error('Actions must be plain objects. Use custom middleware for async actions.');
-	    }
-
-	    if (isDispatching) {
-	      throw new Error('Reducers may not dispatch actions.');
-	    }
-
-	    try {
-	      isDispatching = true;
-	      currentState = currentReducer(currentState, action);
-	    } finally {
-	      isDispatching = false;
-	    }
-
-	    listeners.slice().forEach(function (listener) {
-	      return listener();
-	    });
-	    return action;
-	  }
-
-	  /**
-	   * Returns the reducer currently used by the store to calculate the state.
-	   *
-	   * It is likely that you will only need this function if you implement a hot
-	   * reloading mechanism for Redux.
-	   *
-	   * @returns {Function} The reducer used by the current store.
-	   */
-	  function getReducer() {
-	    return currentReducer;
-	  }
-
-	  /**
-	   * Replaces the reducer currently used by the store to calculate the state.
-	   *
-	   * You might need this if your app implements code splitting and you want to
-	   * load some of the reducers dynamically. You might also need this if you
-	   * implement a hot reloading mechanism for Redux.
-	   *
-	   * @param {Function} nextReducer The reducer for the store to use instead.
-	   * @returns {void}
-	   */
-	  function replaceReducer(nextReducer) {
-	    currentReducer = nextReducer;
-	    dispatch({ type: ActionTypes.INIT });
-	  }
-
-	  // When a store is created, an "INIT" action is dispatched so that every
-	  // reducer returns their initial state. This effectively populates
-	  // the initial state tree.
-	  dispatch({ type: ActionTypes.INIT });
-
-	  return {
-	    dispatch: dispatch,
-	    subscribe: subscribe,
-	    getState: getState,
-	    getReducer: getReducer,
-	    replaceReducer: replaceReducer
-	  };
-	}
-
-/***/ },
-/* 196 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports['default'] = isPlainObject;
-	var fnToString = function fnToString(fn) {
-	  return Function.prototype.toString.call(fn);
-	};
-
-	/**
-	 * @param {any} obj The object to inspect.
-	 * @returns {boolean} True if the argument appears to be a plain object.
-	 */
-
-	function isPlainObject(obj) {
-	  if (!obj || typeof obj !== 'object') {
-	    return false;
-	  }
-
-	  var proto = typeof obj.constructor === 'function' ? Object.getPrototypeOf(obj) : Object.prototype;
-
-	  if (proto === null) {
-	    return true;
-	  }
-
-	  var constructor = proto.constructor;
-
-	  return typeof constructor === 'function' && constructor instanceof constructor && fnToString(constructor) === fnToString(Object);
-	}
-
-	module.exports = exports['default'];
-
-/***/ },
-/* 197 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-
-	exports.__esModule = true;
-	exports['default'] = combineReducers;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _createStore = __webpack_require__(195);
-
-	var _utilsIsPlainObject = __webpack_require__(196);
-
-	var _utilsIsPlainObject2 = _interopRequireDefault(_utilsIsPlainObject);
-
-	var _utilsMapValues = __webpack_require__(198);
-
-	var _utilsMapValues2 = _interopRequireDefault(_utilsMapValues);
-
-	var _utilsPick = __webpack_require__(199);
-
-	var _utilsPick2 = _interopRequireDefault(_utilsPick);
-
-	function getErrorMessage(key, action) {
-	  var actionType = action && action.type;
-	  var actionName = actionType && '"' + actionType.toString() + '"' || 'an action';
-
-	  return 'Reducer "' + key + '" returned undefined handling ' + actionName + '. ' + 'To ignore an action, you must explicitly return the previous state.';
-	}
-
-	function verifyStateShape(initialState, currentState) {
-	  var reducerKeys = Object.keys(currentState);
-
-	  if (reducerKeys.length === 0) {
-	    console.error('Store does not have a valid reducer. Make sure the argument passed ' + 'to combineReducers is an object whose values are reducers.');
-	    return;
-	  }
-
-	  if (!_utilsIsPlainObject2['default'](initialState)) {
-	    console.error('initialState has unexpected type of "' + ({}).toString.call(initialState).match(/\s([a-z|A-Z]+)/)[1] + '". Expected initialState to be an object with the following ' + ('keys: "' + reducerKeys.join('", "') + '"'));
-	    return;
-	  }
-
-	  var unexpectedKeys = Object.keys(initialState).filter(function (key) {
-	    return reducerKeys.indexOf(key) < 0;
-	  });
-
-	  if (unexpectedKeys.length > 0) {
-	    console.error('Unexpected ' + (unexpectedKeys.length > 1 ? 'keys' : 'key') + ' ' + ('"' + unexpectedKeys.join('", "') + '" in initialState will be ignored. ') + ('Expected to find one of the known reducer keys instead: "' + reducerKeys.join('", "') + '"'));
-	  }
-	}
-
-	/**
-	 * Turns an object whose values are different reducer functions, into a single
-	 * reducer function. It will call every child reducer, and gather their results
-	 * into a single state object, whose keys correspond to the keys of the passed
-	 * reducer functions.
-	 *
-	 * @param {Object} reducers An object whose values correspond to different
-	 * reducer functions that need to be combined into one. One handy way to obtain
-	 * it is to use ES6 `import * as reducers` syntax. The reducers may never return
-	 * undefined for any action. Instead, they should return their initial state
-	 * if the state passed to them was undefined, and the current state for any
-	 * unrecognized action.
-	 *
-	 * @returns {Function} A reducer function that invokes every reducer inside the
-	 * passed object, and builds a state object with the same shape.
-	 */
-
-	function combineReducers(reducers) {
-	  var finalReducers = _utilsPick2['default'](reducers, function (val) {
-	    return typeof val === 'function';
-	  });
-
-	  Object.keys(finalReducers).forEach(function (key) {
-	    var reducer = finalReducers[key];
-	    if (typeof reducer(undefined, { type: _createStore.ActionTypes.INIT }) === 'undefined') {
-	      throw new Error('Reducer "' + key + '" returned undefined during initialization. ' + 'If the state passed to the reducer is undefined, you must ' + 'explicitly return the initial state. The initial state may ' + 'not be undefined.');
-	    }
-
-	    var type = Math.random().toString(36).substring(7).split('').join('.');
-	    if (typeof reducer(undefined, { type: type }) === 'undefined') {
-	      throw new Error('Reducer "' + key + '" returned undefined when probed with a random type. ' + ('Don\'t try to handle ' + _createStore.ActionTypes.INIT + ' or other actions in "redux/*" ') + 'namespace. They are considered private. Instead, you must return the ' + 'current state for any unknown actions, unless it is undefined, ' + 'in which case you must return the initial state, regardless of the ' + 'action type. The initial state may not be undefined.');
-	    }
-	  });
-
-	  var defaultState = _utilsMapValues2['default'](finalReducers, function () {
-	    return undefined;
-	  });
-	  var stateShapeVerified;
-
-	  return function combination(state, action) {
-	    if (state === undefined) state = defaultState;
-
-	    var finalState = _utilsMapValues2['default'](finalReducers, function (reducer, key) {
-	      var newState = reducer(state[key], action);
-	      if (typeof newState === 'undefined') {
-	        throw new Error(getErrorMessage(key, action));
-	      }
-	      return newState;
-	    });
-
-	    if (
-	    // Node-like CommonJS environments (Browserify, Webpack)
-	    typeof process !== 'undefined' && typeof process.env !== 'undefined' && process.env.NODE_ENV !== 'production' ||
-	    // React Native
-	    typeof __DEV__ !== 'undefined' && __DEV__ //eslint-disable-line no-undef
-	    ) {
-	      if (!stateShapeVerified) {
-	        verifyStateShape(state, finalState);
-	        stateShapeVerified = true;
-	      }
-	    }
-
-	    return finalState;
-	  };
-	}
-
-	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 198 */
-/***/ function(module, exports) {
-
-	/**
-	 * Applies a function to every key-value pair inside an object.
-	 *
-	 * @param {Object} obj The source object.
-	 * @param {Function} fn The mapper function taht receives the value and the key.
-	 * @returns {Object} A new object that contains the mapped values for the keys.
-	 */
-	"use strict";
-
-	exports.__esModule = true;
-	exports["default"] = mapValues;
-
-	function mapValues(obj, fn) {
-	  return Object.keys(obj).reduce(function (result, key) {
-	    result[key] = fn(obj[key], key);
-	    return result;
-	  }, {});
-	}
-
-	module.exports = exports["default"];
-
-/***/ },
-/* 199 */
-/***/ function(module, exports) {
-
-	/**
-	 * Picks key-value pairs from an object where values satisfy a predicate.
-	 *
-	 * @param {Object} obj The object to pick from.
-	 * @param {Function} fn The predicate the values must satisfy to be copied.
-	 * @returns {Object} The object with the values that satisfied the predicate.
-	 */
-	"use strict";
-
-	exports.__esModule = true;
-	exports["default"] = pick;
-
-	function pick(obj, fn) {
-	  return Object.keys(obj).reduce(function (result, key) {
-	    if (fn(obj[key])) {
-	      result[key] = obj[key];
-	    }
-	    return result;
-	  }, {});
-	}
-
-	module.exports = exports["default"];
-
-/***/ },
-/* 200 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports['default'] = bindActionCreators;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _utilsMapValues = __webpack_require__(198);
-
-	var _utilsMapValues2 = _interopRequireDefault(_utilsMapValues);
-
-	function bindActionCreator(actionCreator, dispatch) {
-	  return function () {
-	    return dispatch(actionCreator.apply(undefined, arguments));
-	  };
-	}
-
-	/**
-	 * Turns an object whose values are action creators, into an object with the
-	 * same keys, but with every function wrapped into a `dispatch` call so they
-	 * may be invoked directly. This is just a convenience method, as you can call
-	 * `store.dispatch(MyActionCreators.doSomething())` yourself just fine.
-	 *
-	 * For convenience, you can also pass a single function as the first argument,
-	 * and get a function in return.
-	 *
-	 * @param {Function|Object} actionCreators An object whose values are action
-	 * creator functions. One handy way to obtain it is to use ES6 `import * as`
-	 * syntax. You may also pass a single function.
-	 *
-	 * @param {Function} dispatch The `dispatch` function available on your Redux
-	 * store.
-	 *
-	 * @returns {Function|Object} The object mimicking the original object, but with
-	 * every action creator wrapped into the `dispatch` call. If you passed a
-	 * function as `actionCreators`, the return value will also be a single
-	 * function.
-	 */
-
-	function bindActionCreators(actionCreators, dispatch) {
-	  if (typeof actionCreators === 'function') {
-	    return bindActionCreator(actionCreators, dispatch);
-	  }
-
-	  if (typeof actionCreators !== 'object' || actionCreators == null) {
-	    throw new Error('bindActionCreators expected an object or a function, instead received ' + typeof actionCreators + '. ' + 'Did you write "import ActionCreators from" instead of "import * as ActionCreators from"?');
-	  }
-
-	  return _utilsMapValues2['default'](actionCreators, function (actionCreator) {
-	    return bindActionCreator(actionCreator, dispatch);
-	  });
-	}
-
-	module.exports = exports['default'];
-
-/***/ },
-/* 201 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports['default'] = applyMiddleware;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _compose = __webpack_require__(202);
-
-	var _compose2 = _interopRequireDefault(_compose);
-
-	/**
-	 * Creates a store enhancer that applies middleware to the dispatch method
-	 * of the Redux store. This is handy for a variety of tasks, such as expressing
-	 * asynchronous actions in a concise manner, or logging every action payload.
-	 *
-	 * See `redux-thunk` package as an example of the Redux middleware.
-	 *
-	 * Because middleware is potentially asynchronous, this should be the first
-	 * store enhancer in the composition chain.
-	 *
-	 * Note that each middleware will be given the `dispatch` and `getState` functions
-	 * as named arguments.
-	 *
-	 * @param {...Function} middlewares The middleware chain to be applied.
-	 * @returns {Function} A store enhancer applying the middleware.
-	 */
-
-	function applyMiddleware() {
-	  for (var _len = arguments.length, middlewares = Array(_len), _key = 0; _key < _len; _key++) {
-	    middlewares[_key] = arguments[_key];
-	  }
-
-	  return function (next) {
-	    return function (reducer, initialState) {
-	      var store = next(reducer, initialState);
-	      var _dispatch = store.dispatch;
-	      var chain = [];
-
-	      var middlewareAPI = {
-	        getState: store.getState,
-	        dispatch: function dispatch(action) {
-	          return _dispatch(action);
-	        }
-	      };
-	      chain = middlewares.map(function (middleware) {
-	        return middleware(middlewareAPI);
-	      });
-	      _dispatch = _compose2['default'].apply(undefined, chain.concat([store.dispatch]));
-
-	      return _extends({}, store, {
-	        dispatch: _dispatch
-	      });
-	    };
-	  };
-	}
-
-	module.exports = exports['default'];
-
-/***/ },
-/* 202 */
-/***/ function(module, exports) {
-
-	/**
-	 * Composes functions from left to right.
-	 *
-	 * @param {...Function} funcs - The functions to compose. Each is expected to
-	 * accept a function as an argument and to return a function.
-	 * @returns {Function} A function obtained by composing functions from left to
-	 * right.
-	 */
-	"use strict";
-
-	exports.__esModule = true;
-	exports["default"] = compose;
-
-	function compose() {
-	  for (var _len = arguments.length, funcs = Array(_len), _key = 0; _key < _len; _key++) {
-	    funcs[_key] = arguments[_key];
-	  }
-
-	  return funcs.reduceRight(function (composed, f) {
-	    return f(composed);
-	  });
-	}
-
-	module.exports = exports["default"];
-
-/***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -24432,710 +24523,9 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 204 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
-
-	var _DOMHistory2 = __webpack_require__(205);
-
-	var _DOMHistory3 = _interopRequireDefault(_DOMHistory2);
-
-	var _DOMUtils = __webpack_require__(178);
-
-	var _NavigationTypes = __webpack_require__(173);
-
-	var _NavigationTypes2 = _interopRequireDefault(_NavigationTypes);
-
-	function updateCurrentState(extraState) {
-	  var state = window.history.state;
-
-	  if (state) window.history.replaceState(_extends(state, extraState), '');
-	}
-
-	/**
-	 * A history implementation for DOM environments that support the
-	 * HTML5 history API (pushState, replaceState, and the popstate event).
-	 * Provides the cleanest URLs and should always be used in browser
-	 * environments if possible.
-	 *
-	 * Note: BrowserHistory automatically falls back to using full page
-	 * refreshes if HTML5 history is not available, so URLs are always
-	 * the same across browsers.
-	 */
-
-	var BrowserHistory = (function (_DOMHistory) {
-	  function BrowserHistory(options) {
-	    _classCallCheck(this, BrowserHistory);
-
-	    _DOMHistory.call(this, options);
-	    this.handlePopState = this.handlePopState.bind(this);
-	    this.isSupported = (0, _DOMUtils.supportsHistory)();
-	  }
-
-	  _inherits(BrowserHistory, _DOMHistory);
-
-	  BrowserHistory.prototype._updateLocation = function _updateLocation(navigationType) {
-	    var state = null;
-
-	    if (this.isSupported) {
-	      var historyState = window.history.state;
-	      state = this._createState(historyState);
-
-	      if (!historyState || !historyState.key) window.history.replaceState(state, '');
-	    }
-
-	    this.location = this.createLocation((0, _DOMUtils.getWindowPath)(), state, navigationType);
-	  };
-
-	  BrowserHistory.prototype.setup = function setup() {
-	    if (this.location == null) this._updateLocation();
-	  };
-
-	  BrowserHistory.prototype.handlePopState = function handlePopState(event) {
-	    if (event.state === undefined) return; // Ignore extraneous popstate events in WebKit.
-
-	    this._updateLocation(_NavigationTypes2['default'].POP);
-	    this._notifyChange();
-	  };
-
-	  BrowserHistory.prototype.addChangeListener = function addChangeListener(listener) {
-	    _DOMHistory.prototype.addChangeListener.call(this, listener);
-
-	    if (this.changeListeners.length === 1) {
-	      if (window.addEventListener) {
-	        window.addEventListener('popstate', this.handlePopState, false);
-	      } else {
-	        window.attachEvent('onpopstate', this.handlePopState);
-	      }
-	    }
-	  };
-
-	  BrowserHistory.prototype.removeChangeListener = function removeChangeListener(listener) {
-	    _DOMHistory.prototype.removeChangeListener.call(this, listener);
-
-	    if (this.changeListeners.length === 0) {
-	      if (window.removeEventListener) {
-	        window.removeEventListener('popstate', this.handlePopState, false);
-	      } else {
-	        window.detachEvent('onpopstate', this.handlePopState);
-	      }
-	    }
-	  };
-
-	  // http://www.w3.org/TR/2011/WD-html5-20110113/history.html#dom-history-pushstate
-
-	  BrowserHistory.prototype.pushState = function pushState(state, path) {
-	    if (this.isSupported) {
-	      updateCurrentState(this.getScrollPosition());
-
-	      state = this._createState(state);
-
-	      window.history.pushState(state, '', path);
-	      this.location = this.createLocation(path, state, _NavigationTypes2['default'].PUSH);
-	      this._notifyChange();
-	    } else {
-	      window.location = path;
-	    }
-	  };
-
-	  // http://www.w3.org/TR/2011/WD-html5-20110113/history.html#dom-history-replacestate
-
-	  BrowserHistory.prototype.replaceState = function replaceState(state, path) {
-	    if (this.isSupported) {
-	      state = this._createState(state);
-
-	      window.history.replaceState(state, '', path);
-	      this.location = this.createLocation(path, state, _NavigationTypes2['default'].REPLACE);
-	      this._notifyChange();
-	    } else {
-	      window.location.replace(path);
-	    }
-	  };
-
-	  return BrowserHistory;
-	})(_DOMHistory3['default']);
-
-	var history = new BrowserHistory();
-	exports.history = history;
-	exports['default'] = BrowserHistory;
-
-/***/ },
 /* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	exports.__esModule = true;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
-
-	var _History2 = __webpack_require__(175);
-
-	var _History3 = _interopRequireDefault(_History2);
-
-	var _DOMUtils = __webpack_require__(178);
-
-	/**
-	 * A history interface that assumes a DOM environment.
-	 */
-
-	var DOMHistory = (function (_History) {
-	  function DOMHistory() {
-	    var options = arguments[0] === undefined ? {} : arguments[0];
-
-	    _classCallCheck(this, DOMHistory);
-
-	    _History.call(this, options);
-	    this.getScrollPosition = options.getScrollPosition || _DOMUtils.getWindowScrollPosition;
-	  }
-
-	  _inherits(DOMHistory, _History);
-
-	  DOMHistory.prototype.go = function go(n) {
-	    if (n === 0) return;
-
-	    window.history.go(n);
-	  };
-
-	  return DOMHistory;
-	})(_History3['default']);
-
-	exports['default'] = DOMHistory;
-	module.exports = exports['default'];
-
-/***/ },
-/* 206 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
-
-	var _warning = __webpack_require__(160);
-
-	var _warning2 = _interopRequireDefault(_warning);
-
-	var _DOMHistory2 = __webpack_require__(205);
-
-	var _DOMHistory3 = _interopRequireDefault(_DOMHistory2);
-
-	var _NavigationTypes = __webpack_require__(173);
-
-	var _NavigationTypes2 = _interopRequireDefault(_NavigationTypes);
-
-	var _DOMUtils = __webpack_require__(178);
-
-	var _URLUtils = __webpack_require__(165);
-
-	var DefaultQueryKey = '_qk';
-
-	function ensureSlash() {
-	  var path = (0, _DOMUtils.getHashPath)();
-
-	  if ((0, _URLUtils.isAbsolutePath)(path)) return true;
-
-	  (0, _DOMUtils.replaceHashPath)('/' + path);
-
-	  return false;
-	}
-
-	function addQueryStringValueToPath(path, key, value) {
-	  return path + (path.indexOf('?') === -1 ? '?' : '&') + ('' + key + '=' + value);
-	}
-
-	function getQueryStringValueFromPath(path, key) {
-	  var match = path.match(new RegExp('\\?.*?\\b' + key + '=(.+?)\\b'));
-	  return match && match[1];
-	}
-
-	function saveState(path, queryKey, state) {
-	  window.sessionStorage.setItem(state.key, JSON.stringify(state));
-	  return addQueryStringValueToPath(path, queryKey, state.key);
-	}
-
-	function readState(path, queryKey) {
-	  var sessionKey = getQueryStringValueFromPath(path, queryKey);
-	  var json = sessionKey && window.sessionStorage.getItem(sessionKey);
-
-	  if (json) {
-	    try {
-	      return JSON.parse(json);
-	    } catch (error) {}
-	  }
-
-	  return null;
-	}
-
-	function updateCurrentState(queryKey, extraState) {
-	  var path = (0, _DOMUtils.getHashPath)();
-	  var state = readState(path, queryKey);
-
-	  if (state) saveState(path, queryKey, _extends(state, extraState));
-	}
-
-	/**
-	 * A history implementation for DOM environments that uses window.location.hash
-	 * to store the current path. This is essentially a hack for older browsers that
-	 * do not support the HTML5 history API (IE <= 9).
-	 *
-	 * Support for persistence of state across page refreshes is provided using a
-	 * combination of a URL query string parameter and DOM storage. However, this
-	 * support is not enabled by default. In order to use it, create your own
-	 * HashHistory.
-	 *
-	 *   import HashHistory from 'react-router/lib/HashHistory';
-	 *   var StatefulHashHistory = new HashHistory({ queryKey: '_key' });
-	 *   React.render(<Router history={StatefulHashHistory} .../>, ...);
-	 */
-
-	var HashHistory = (function (_DOMHistory) {
-	  function HashHistory() {
-	    var options = arguments[0] === undefined ? {} : arguments[0];
-
-	    _classCallCheck(this, HashHistory);
-
-	    _DOMHistory.call(this, options);
-	    this.handleHashChange = this.handleHashChange.bind(this);
-	    this.queryKey = options.queryKey;
-
-	    if (typeof this.queryKey !== 'string') this.queryKey = this.queryKey ? DefaultQueryKey : null;
-	  }
-
-	  _inherits(HashHistory, _DOMHistory);
-
-	  HashHistory.prototype._updateLocation = function _updateLocation(navigationType) {
-	    var path = (0, _DOMUtils.getHashPath)();
-	    var state = this.queryKey ? readState(path, this.queryKey) : null;
-	    this.location = this.createLocation(path, state, navigationType);
-	  };
-
-	  HashHistory.prototype.setup = function setup() {
-	    if (this.location == null) {
-	      ensureSlash();
-	      this._updateLocation();
-	    }
-	  };
-
-	  HashHistory.prototype.handleHashChange = function handleHashChange() {
-	    if (!ensureSlash()) return;
-
-	    if (this._ignoreNextHashChange) {
-	      this._ignoreNextHashChange = false;
-	    } else {
-	      this._updateLocation(_NavigationTypes2['default'].POP);
-	      this._notifyChange();
-	    }
-	  };
-
-	  HashHistory.prototype.addChangeListener = function addChangeListener(listener) {
-	    _DOMHistory.prototype.addChangeListener.call(this, listener);
-
-	    if (this.changeListeners.length === 1) {
-	      if (window.addEventListener) {
-	        window.addEventListener('hashchange', this.handleHashChange, false);
-	      } else {
-	        window.attachEvent('onhashchange', this.handleHashChange);
-	      }
-	    }
-	  };
-
-	  HashHistory.prototype.removeChangeListener = function removeChangeListener(listener) {
-	    _DOMHistory.prototype.removeChangeListener.call(this, listener);
-
-	    if (this.changeListeners.length === 0) {
-	      if (window.removeEventListener) {
-	        window.removeEventListener('hashchange', this.handleHashChange, false);
-	      } else {
-	        window.detachEvent('onhashchange', this.handleHashChange);
-	      }
-	    }
-	  };
-
-	  HashHistory.prototype.pushState = function pushState(state, path) {
-	    (0, _warning2['default'])(this.queryKey || state == null, 'HashHistory needs a queryKey in order to persist state');
-
-	    if (this.queryKey) updateCurrentState(this.queryKey, this.getScrollPosition());
-
-	    state = this._createState(state);
-
-	    if (this.queryKey) path = saveState(path, this.queryKey, state);
-
-	    this._ignoreNextHashChange = true;
-	    window.location.hash = path;
-
-	    this.location = this.createLocation(path, state, _NavigationTypes2['default'].PUSH);
-
-	    this._notifyChange();
-	  };
-
-	  HashHistory.prototype.replaceState = function replaceState(state, path) {
-	    state = this._createState(state);
-
-	    if (this.queryKey) path = saveState(path, this.queryKey, state);
-
-	    this._ignoreNextHashChange = true;
-	    (0, _DOMUtils.replaceHashPath)(path);
-
-	    this.location = this.createLocation(path, state, _NavigationTypes2['default'].REPLACE);
-
-	    this._notifyChange();
-	  };
-
-	  HashHistory.prototype.makeHref = function makeHref(path) {
-	    return '#' + path;
-	  };
-
-	  return HashHistory;
-	})(_DOMHistory3['default']);
-
-	var history = new HashHistory();
-	exports.history = history;
-	exports['default'] = HashHistory;
-
-	// Ignore invalid JSON in session storage.
-
-/***/ },
-/* 207 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = configureStore;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _reduxThunk = __webpack_require__(208);
-
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-
-	var _reducersIndex = __webpack_require__(209);
-
-	var _reducersIndex2 = _interopRequireDefault(_reducersIndex);
-
-	var _redux = __webpack_require__(194);
-
-	function configureStore(initialState) {
-	  var store = (0, _redux.createStore)(_reducersIndex2['default'], initialState);
-
-	  if (false) {
-	    // Enable Webpack hot module replacement for reducers
-	    module.hot.accept('../reducers', function () {
-	      var nextRootReducer = require('../reducers/index');
-	      store.replaceReducer(nextRootReducer);
-	    });
-	  }
-
-	  return store;
-	}
-
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "configureStore.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ },
-/* 208 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports['default'] = thunkMiddleware;
-
-	function thunkMiddleware(_ref) {
-	  var dispatch = _ref.dispatch;
-	  var getState = _ref.getState;
-
-	  return function (next) {
-	    return function (action) {
-	      return typeof action === 'function' ? action(dispatch, getState) : next(action);
-	    };
-	  };
-	}
-
-	module.exports = exports['default'];
-
-/***/ },
-/* 209 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _redux = __webpack_require__(194);
-
-	var _portfolio = __webpack_require__(210);
-
-	var _portfolio2 = _interopRequireDefault(_portfolio);
-
-	var rootReducer = (0, _redux.combineReducers)({
-	    portfolio: _portfolio2['default']
-	});
-
-	exports['default'] = rootReducer;
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ },
-/* 210 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports["default"] = portfolio;
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
-
-	var _constantsActionType = __webpack_require__(211);
-
-	var initialState = [{
-	    name: "no repos",
-	    url: "http://timakin.github.io",
-	    description: "no repos is loaded"
-	}];
-
-	function portfolio(state, action) {
-	    if (state === undefined) state = initialState;
-
-	    switch (action.type) {
-	        case _constantsActionType.LOAD_GITHUB_REPOS:
-	            console.log("yo");
-	            return [].concat(_toConsumableArray(state), [{
-	                name: "yoyo",
-	                url: "http://google.com",
-	                description: "successfully loaded"
-	            }]);
-
-	        default:
-	            return state;
-	    }
-	}
-
-	module.exports = exports["default"];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "portfolio.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ },
-/* 211 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	var LOAD_GITHUB_REPOS = 'LOAD_GITHUB_REPOS';
-	exports.LOAD_GITHUB_REPOS = LOAD_GITHUB_REPOS;
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ActionType.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ },
-/* 212 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _redux = __webpack_require__(194);
-
-	var _reactRedux = __webpack_require__(186);
-
-	var _componentsRootComponent = __webpack_require__(213);
-
-	var _componentsRootComponent2 = _interopRequireDefault(_componentsRootComponent);
-
-	var _actionsPortfolio = __webpack_require__(214);
-
-	var PortfolioActions = _interopRequireWildcard(_actionsPortfolio);
-
-	function mapStateToProps(state) {
-	  return {
-	    portfolio: state.portfolio
-	  };
-	}
-
-	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)(PortfolioActions, dispatch);
-	}
-
-	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_componentsRootComponent2['default']);
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "App.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ },
-/* 213 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _redux = __webpack_require__(194);
-
-	var _reactRedux = __webpack_require__(186);
-
-	var _reactRouter = __webpack_require__(158);
-
-	var _App = __webpack_require__(221);
-
-	var _App2 = _interopRequireDefault(_App);
-
-	var _HomeHome = __webpack_require__(215);
-
-	var _HomeHome2 = _interopRequireDefault(_HomeHome);
-
-	var _PortfolioGithub = __webpack_require__(220);
-
-	var _PortfolioGithub2 = _interopRequireDefault(_PortfolioGithub);
-
-	var _reactRouterLibBrowserHistory = __webpack_require__(204);
-
-	var _reactRouterLibBrowserHistory2 = _interopRequireDefault(_reactRouterLibBrowserHistory);
-
-	var _reactRouterLibHashHistory = __webpack_require__(206);
-
-	var _reactRouterLibHashHistory2 = _interopRequireDefault(_reactRouterLibHashHistory);
-
-	var history = new _reactRouterLibHashHistory2['default']();
-
-	var RootComponent = (function (_Component) {
-	    _inherits(RootComponent, _Component);
-
-	    function RootComponent(props, context) {
-	        _classCallCheck(this, RootComponent);
-
-	        _get(Object.getPrototypeOf(RootComponent.prototype), 'constructor', this).call(this, props, context);
-	    }
-
-	    _createClass(RootComponent, [{
-	        key: 'render',
-	        value: function render() {
-	            var routerState = this.props.initialState || this.props;
-	            return _react2['default'].createElement(
-	                _reactRouter.Router,
-	                _extends({ history: history }, routerState),
-	                _react2['default'].createElement(
-	                    _reactRouter.Route,
-	                    { name: 'app', component: _App2['default'] },
-	                    _react2['default'].createElement(_reactRouter.Route, { name: 'home', path: 'home', component: _HomeHome2['default'] }),
-	                    _react2['default'].createElement(_reactRouter.Route, { name: 'github', path: 'github', component: _PortfolioGithub2['default'] }),
-	                    _react2['default'].createElement(_reactRouter.Redirect, { path: '/', to: 'home' })
-	                )
-	            );
-	        }
-	    }]);
-
-	    return RootComponent;
-	})(_react.Component);
-
-	exports['default'] = RootComponent;
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "RootComponent.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	exports.loadGithubRepos = loadGithubRepos;
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
-
-	var _constantsActionType = __webpack_require__(211);
-
-	var types = _interopRequireWildcard(_constantsActionType);
-
-	/* Action Creators */
-
-	function loadGithubRepos() {
-	    return { type: types.LOAD_GITHUB_REPOS };
-	}
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "portfolio.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ },
-/* 215 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
@@ -25160,7 +24550,7 @@
 
 	var _reactRouter = __webpack_require__(158);
 
-	var _cssHomeHomeCss = __webpack_require__(216);
+	var _cssHomeHomeCss = __webpack_require__(206);
 
 	var _cssHomeHomeCss2 = _interopRequireDefault(_cssHomeHomeCss);
 
@@ -25202,16 +24592,16 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Home.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 216 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(217);
+	var content = __webpack_require__(207);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(219)(content, {});
+	var update = __webpack_require__(209)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -25228,10 +24618,10 @@
 	}
 
 /***/ },
-/* 217 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(218)();
+	exports = module.exports = __webpack_require__(208)();
 	// imports
 
 
@@ -25244,7 +24634,7 @@
 	};
 
 /***/ },
-/* 218 */
+/* 208 */
 /***/ function(module, exports) {
 
 	/*
@@ -25300,7 +24690,7 @@
 
 
 /***/ },
-/* 219 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -25525,7 +24915,7 @@
 
 
 /***/ },
-/* 220 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25550,25 +24940,40 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _storePortfolioStore = __webpack_require__(214);
+
+	var _storePortfolioStore2 = _interopRequireDefault(_storePortfolioStore);
+
+	var _actionsActionCreators = __webpack_require__(221);
+
 	var Github = (function (_React$Component) {
 	    _inherits(Github, _React$Component);
 
-	    function Github(props, context) {
+	    function Github(props) {
 	        _classCallCheck(this, Github);
 
-	        _get(Object.getPrototypeOf(Github.prototype), 'constructor', this).call(this, props, context);
+	        _get(Object.getPrototypeOf(Github.prototype), 'constructor', this).call(this, props);
+	        this.state = this.getPortfolioState();
+	        this._onChange = this._onChange.bind(this);
 	    }
 
 	    _createClass(Github, [{
+	        key: 'getPortfolioState',
+	        value: function getPortfolioState() {
+	            return {
+	                allRepos: _storePortfolioStore2['default'].getAll()
+	            };
+	        }
+	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            var _props = this.props;
-	            var loadGithubRepos = _props.loadGithubRepos;
-	            var portfolio = _props.portfolio;
-
-	            var result = loadGithubRepos;
-	            console.log(portfolio);
-	            console.log(result);
+	            _storePortfolioStore2['default'].addEventListener(this._onChange);
+	            _actionsActionCreators.ActionCreators.loadGithubRepos();
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            _storePortfolioStore2['default'].removeChangeListener(this._onChange);
 	        }
 	    }, {
 	        key: 'render',
@@ -25580,8 +24985,26 @@
 	                    'h1',
 	                    null,
 	                    'Githubのポートフォリオ'
+	                ),
+	                _react2['default'].createElement(
+	                    'ul',
+	                    null,
+	                    this.state.allRepos.map(function (repo) {
+	                        return _react2['default'].createElement(
+	                            'li',
+	                            { key: repo.id },
+	                            repo.name,
+	                            ': ',
+	                            repo.url
+	                        );
+	                    })
 	                )
 	            );
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange() {
+	            this.setState(this.getPortfolioState());
 	        }
 	    }]);
 
@@ -25592,6 +25015,1155 @@
 	module.exports = exports['default'];
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Github.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	var _DOMHistory2 = __webpack_require__(212);
+
+	var _DOMHistory3 = _interopRequireDefault(_DOMHistory2);
+
+	var _DOMUtils = __webpack_require__(178);
+
+	var _NavigationTypes = __webpack_require__(173);
+
+	var _NavigationTypes2 = _interopRequireDefault(_NavigationTypes);
+
+	function updateCurrentState(extraState) {
+	  var state = window.history.state;
+
+	  if (state) window.history.replaceState(_extends(state, extraState), '');
+	}
+
+	/**
+	 * A history implementation for DOM environments that support the
+	 * HTML5 history API (pushState, replaceState, and the popstate event).
+	 * Provides the cleanest URLs and should always be used in browser
+	 * environments if possible.
+	 *
+	 * Note: BrowserHistory automatically falls back to using full page
+	 * refreshes if HTML5 history is not available, so URLs are always
+	 * the same across browsers.
+	 */
+
+	var BrowserHistory = (function (_DOMHistory) {
+	  function BrowserHistory(options) {
+	    _classCallCheck(this, BrowserHistory);
+
+	    _DOMHistory.call(this, options);
+	    this.handlePopState = this.handlePopState.bind(this);
+	    this.isSupported = (0, _DOMUtils.supportsHistory)();
+	  }
+
+	  _inherits(BrowserHistory, _DOMHistory);
+
+	  BrowserHistory.prototype._updateLocation = function _updateLocation(navigationType) {
+	    var state = null;
+
+	    if (this.isSupported) {
+	      var historyState = window.history.state;
+	      state = this._createState(historyState);
+
+	      if (!historyState || !historyState.key) window.history.replaceState(state, '');
+	    }
+
+	    this.location = this.createLocation((0, _DOMUtils.getWindowPath)(), state, navigationType);
+	  };
+
+	  BrowserHistory.prototype.setup = function setup() {
+	    if (this.location == null) this._updateLocation();
+	  };
+
+	  BrowserHistory.prototype.handlePopState = function handlePopState(event) {
+	    if (event.state === undefined) return; // Ignore extraneous popstate events in WebKit.
+
+	    this._updateLocation(_NavigationTypes2['default'].POP);
+	    this._notifyChange();
+	  };
+
+	  BrowserHistory.prototype.addChangeListener = function addChangeListener(listener) {
+	    _DOMHistory.prototype.addChangeListener.call(this, listener);
+
+	    if (this.changeListeners.length === 1) {
+	      if (window.addEventListener) {
+	        window.addEventListener('popstate', this.handlePopState, false);
+	      } else {
+	        window.attachEvent('onpopstate', this.handlePopState);
+	      }
+	    }
+	  };
+
+	  BrowserHistory.prototype.removeChangeListener = function removeChangeListener(listener) {
+	    _DOMHistory.prototype.removeChangeListener.call(this, listener);
+
+	    if (this.changeListeners.length === 0) {
+	      if (window.removeEventListener) {
+	        window.removeEventListener('popstate', this.handlePopState, false);
+	      } else {
+	        window.detachEvent('onpopstate', this.handlePopState);
+	      }
+	    }
+	  };
+
+	  // http://www.w3.org/TR/2011/WD-html5-20110113/history.html#dom-history-pushstate
+
+	  BrowserHistory.prototype.pushState = function pushState(state, path) {
+	    if (this.isSupported) {
+	      updateCurrentState(this.getScrollPosition());
+
+	      state = this._createState(state);
+
+	      window.history.pushState(state, '', path);
+	      this.location = this.createLocation(path, state, _NavigationTypes2['default'].PUSH);
+	      this._notifyChange();
+	    } else {
+	      window.location = path;
+	    }
+	  };
+
+	  // http://www.w3.org/TR/2011/WD-html5-20110113/history.html#dom-history-replacestate
+
+	  BrowserHistory.prototype.replaceState = function replaceState(state, path) {
+	    if (this.isSupported) {
+	      state = this._createState(state);
+
+	      window.history.replaceState(state, '', path);
+	      this.location = this.createLocation(path, state, _NavigationTypes2['default'].REPLACE);
+	      this._notifyChange();
+	    } else {
+	      window.location.replace(path);
+	    }
+	  };
+
+	  return BrowserHistory;
+	})(_DOMHistory3['default']);
+
+	var history = new BrowserHistory();
+	exports.history = history;
+	exports['default'] = BrowserHistory;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	var _History2 = __webpack_require__(175);
+
+	var _History3 = _interopRequireDefault(_History2);
+
+	var _DOMUtils = __webpack_require__(178);
+
+	/**
+	 * A history interface that assumes a DOM environment.
+	 */
+
+	var DOMHistory = (function (_History) {
+	  function DOMHistory() {
+	    var options = arguments[0] === undefined ? {} : arguments[0];
+
+	    _classCallCheck(this, DOMHistory);
+
+	    _History.call(this, options);
+	    this.getScrollPosition = options.getScrollPosition || _DOMUtils.getWindowScrollPosition;
+	  }
+
+	  _inherits(DOMHistory, _History);
+
+	  DOMHistory.prototype.go = function go(n) {
+	    if (n === 0) return;
+
+	    window.history.go(n);
+	  };
+
+	  return DOMHistory;
+	})(_History3['default']);
+
+	exports['default'] = DOMHistory;
+	module.exports = exports['default'];
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	var _warning = __webpack_require__(160);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _DOMHistory2 = __webpack_require__(212);
+
+	var _DOMHistory3 = _interopRequireDefault(_DOMHistory2);
+
+	var _NavigationTypes = __webpack_require__(173);
+
+	var _NavigationTypes2 = _interopRequireDefault(_NavigationTypes);
+
+	var _DOMUtils = __webpack_require__(178);
+
+	var _URLUtils = __webpack_require__(165);
+
+	var DefaultQueryKey = '_qk';
+
+	function ensureSlash() {
+	  var path = (0, _DOMUtils.getHashPath)();
+
+	  if ((0, _URLUtils.isAbsolutePath)(path)) return true;
+
+	  (0, _DOMUtils.replaceHashPath)('/' + path);
+
+	  return false;
+	}
+
+	function addQueryStringValueToPath(path, key, value) {
+	  return path + (path.indexOf('?') === -1 ? '?' : '&') + ('' + key + '=' + value);
+	}
+
+	function getQueryStringValueFromPath(path, key) {
+	  var match = path.match(new RegExp('\\?.*?\\b' + key + '=(.+?)\\b'));
+	  return match && match[1];
+	}
+
+	function saveState(path, queryKey, state) {
+	  window.sessionStorage.setItem(state.key, JSON.stringify(state));
+	  return addQueryStringValueToPath(path, queryKey, state.key);
+	}
+
+	function readState(path, queryKey) {
+	  var sessionKey = getQueryStringValueFromPath(path, queryKey);
+	  var json = sessionKey && window.sessionStorage.getItem(sessionKey);
+
+	  if (json) {
+	    try {
+	      return JSON.parse(json);
+	    } catch (error) {}
+	  }
+
+	  return null;
+	}
+
+	function updateCurrentState(queryKey, extraState) {
+	  var path = (0, _DOMUtils.getHashPath)();
+	  var state = readState(path, queryKey);
+
+	  if (state) saveState(path, queryKey, _extends(state, extraState));
+	}
+
+	/**
+	 * A history implementation for DOM environments that uses window.location.hash
+	 * to store the current path. This is essentially a hack for older browsers that
+	 * do not support the HTML5 history API (IE <= 9).
+	 *
+	 * Support for persistence of state across page refreshes is provided using a
+	 * combination of a URL query string parameter and DOM storage. However, this
+	 * support is not enabled by default. In order to use it, create your own
+	 * HashHistory.
+	 *
+	 *   import HashHistory from 'react-router/lib/HashHistory';
+	 *   var StatefulHashHistory = new HashHistory({ queryKey: '_key' });
+	 *   React.render(<Router history={StatefulHashHistory} .../>, ...);
+	 */
+
+	var HashHistory = (function (_DOMHistory) {
+	  function HashHistory() {
+	    var options = arguments[0] === undefined ? {} : arguments[0];
+
+	    _classCallCheck(this, HashHistory);
+
+	    _DOMHistory.call(this, options);
+	    this.handleHashChange = this.handleHashChange.bind(this);
+	    this.queryKey = options.queryKey;
+
+	    if (typeof this.queryKey !== 'string') this.queryKey = this.queryKey ? DefaultQueryKey : null;
+	  }
+
+	  _inherits(HashHistory, _DOMHistory);
+
+	  HashHistory.prototype._updateLocation = function _updateLocation(navigationType) {
+	    var path = (0, _DOMUtils.getHashPath)();
+	    var state = this.queryKey ? readState(path, this.queryKey) : null;
+	    this.location = this.createLocation(path, state, navigationType);
+	  };
+
+	  HashHistory.prototype.setup = function setup() {
+	    if (this.location == null) {
+	      ensureSlash();
+	      this._updateLocation();
+	    }
+	  };
+
+	  HashHistory.prototype.handleHashChange = function handleHashChange() {
+	    if (!ensureSlash()) return;
+
+	    if (this._ignoreNextHashChange) {
+	      this._ignoreNextHashChange = false;
+	    } else {
+	      this._updateLocation(_NavigationTypes2['default'].POP);
+	      this._notifyChange();
+	    }
+	  };
+
+	  HashHistory.prototype.addChangeListener = function addChangeListener(listener) {
+	    _DOMHistory.prototype.addChangeListener.call(this, listener);
+
+	    if (this.changeListeners.length === 1) {
+	      if (window.addEventListener) {
+	        window.addEventListener('hashchange', this.handleHashChange, false);
+	      } else {
+	        window.attachEvent('onhashchange', this.handleHashChange);
+	      }
+	    }
+	  };
+
+	  HashHistory.prototype.removeChangeListener = function removeChangeListener(listener) {
+	    _DOMHistory.prototype.removeChangeListener.call(this, listener);
+
+	    if (this.changeListeners.length === 0) {
+	      if (window.removeEventListener) {
+	        window.removeEventListener('hashchange', this.handleHashChange, false);
+	      } else {
+	        window.detachEvent('onhashchange', this.handleHashChange);
+	      }
+	    }
+	  };
+
+	  HashHistory.prototype.pushState = function pushState(state, path) {
+	    (0, _warning2['default'])(this.queryKey || state == null, 'HashHistory needs a queryKey in order to persist state');
+
+	    if (this.queryKey) updateCurrentState(this.queryKey, this.getScrollPosition());
+
+	    state = this._createState(state);
+
+	    if (this.queryKey) path = saveState(path, this.queryKey, state);
+
+	    this._ignoreNextHashChange = true;
+	    window.location.hash = path;
+
+	    this.location = this.createLocation(path, state, _NavigationTypes2['default'].PUSH);
+
+	    this._notifyChange();
+	  };
+
+	  HashHistory.prototype.replaceState = function replaceState(state, path) {
+	    state = this._createState(state);
+
+	    if (this.queryKey) path = saveState(path, this.queryKey, state);
+
+	    this._ignoreNextHashChange = true;
+	    (0, _DOMUtils.replaceHashPath)(path);
+
+	    this.location = this.createLocation(path, state, _NavigationTypes2['default'].REPLACE);
+
+	    this._notifyChange();
+	  };
+
+	  HashHistory.prototype.makeHref = function makeHref(path) {
+	    return '#' + path;
+	  };
+
+	  return HashHistory;
+	})(_DOMHistory3['default']);
+
+	var history = new HashHistory();
+	exports.history = history;
+	exports['default'] = HashHistory;
+
+	// Ignore invalid JSON in session storage.
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _events = __webpack_require__(215);
+
+	var _dispatcherAppDispatcher = __webpack_require__(216);
+
+	var _dispatcherAppDispatcher2 = _interopRequireDefault(_dispatcherAppDispatcher);
+
+	var _constantsAppConstants = __webpack_require__(220);
+
+	var SINGLETON = Symbol();
+	var SINGLETON_ENFORCER = Symbol();
+
+	var PortfolioStoreSingleton = (function (_EventEmitter) {
+	    _inherits(PortfolioStoreSingleton, _EventEmitter);
+
+	    function PortfolioStoreSingleton(enforcer) {
+	        _classCallCheck(this, PortfolioStoreSingleton);
+
+	        _get(Object.getPrototypeOf(PortfolioStoreSingleton.prototype), 'constructor', this).call(this);
+
+	        if (enforcer !== SINGLETON_ENFORCER) {
+	            throw "Cannot construct singleton";
+	        }
+
+	        _dispatcherAppDispatcher2['default'].register(this._onAction.bind(this));
+
+	        this._repos = [];
+	        this.CHANGE_EVENT = 'change';
+	    }
+
+	    _createClass(PortfolioStoreSingleton, [{
+	        key: 'insert',
+	        value: function insert(repo) {
+	            this._repos.push(repo);
+	        }
+	    }, {
+	        key: '_onAction',
+	        value: function _onAction(action) {
+	            switch (action.actionType) {
+	                case _constantsAppConstants.ActionTypes.LOAD_GITHUB_REPOS:
+	                    this.insert({
+	                        id: 0,
+	                        name: "testname",
+	                        url: "http://google.com"
+	                    });
+	                    this.emitChange();
+	                    break;
+	                default:
+	            }
+	        }
+	    }, {
+	        key: 'getAll',
+	        value: function getAll() {
+	            return this._repos;
+	        }
+	    }, {
+	        key: 'emitChange',
+	        value: function emitChange() {
+	            this.emit(this.CHANGE_EVENT);
+	        }
+	    }, {
+	        key: 'addEventListener',
+	        value: function addEventListener(callback) {
+	            this.on(this.CHANGE_EVENT, callback);
+	        }
+	    }, {
+	        key: 'removeEventListener',
+	        value: function removeEventListener(callback) {
+	            this.removeListener(this.CHANGE_EVENT, callback);
+	        }
+	    }], [{
+	        key: 'instance',
+	        get: function get() {
+	            if (!this[SINGLETON]) {
+	                this[SINGLETON] = new PortfolioStoreSingleton(SINGLETON_ENFORCER);
+	            }
+	            return this[SINGLETON];
+	        }
+	    }]);
+
+	    return PortfolioStoreSingleton;
+	})(_events.EventEmitter);
+
+	var PortfolioStore = PortfolioStoreSingleton.instance;
+	exports['default'] = PortfolioStore;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "PortfolioStore.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 215 */
+/***/ function(module, exports) {
+
+	// Copyright Joyent, Inc. and other Node contributors.
+	//
+	// Permission is hereby granted, free of charge, to any person obtaining a
+	// copy of this software and associated documentation files (the
+	// "Software"), to deal in the Software without restriction, including
+	// without limitation the rights to use, copy, modify, merge, publish,
+	// distribute, sublicense, and/or sell copies of the Software, and to permit
+	// persons to whom the Software is furnished to do so, subject to the
+	// following conditions:
+	//
+	// The above copyright notice and this permission notice shall be included
+	// in all copies or substantial portions of the Software.
+	//
+	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+	// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+	function EventEmitter() {
+	  this._events = this._events || {};
+	  this._maxListeners = this._maxListeners || undefined;
+	}
+	module.exports = EventEmitter;
+
+	// Backwards-compat with node 0.10.x
+	EventEmitter.EventEmitter = EventEmitter;
+
+	EventEmitter.prototype._events = undefined;
+	EventEmitter.prototype._maxListeners = undefined;
+
+	// By default EventEmitters will print a warning if more than 10 listeners are
+	// added to it. This is a useful default which helps finding memory leaks.
+	EventEmitter.defaultMaxListeners = 10;
+
+	// Obviously not all Emitters should be limited to 10. This function allows
+	// that to be increased. Set to zero for unlimited.
+	EventEmitter.prototype.setMaxListeners = function(n) {
+	  if (!isNumber(n) || n < 0 || isNaN(n))
+	    throw TypeError('n must be a positive number');
+	  this._maxListeners = n;
+	  return this;
+	};
+
+	EventEmitter.prototype.emit = function(type) {
+	  var er, handler, len, args, i, listeners;
+
+	  if (!this._events)
+	    this._events = {};
+
+	  // If there is no 'error' event listener then throw.
+	  if (type === 'error') {
+	    if (!this._events.error ||
+	        (isObject(this._events.error) && !this._events.error.length)) {
+	      er = arguments[1];
+	      if (er instanceof Error) {
+	        throw er; // Unhandled 'error' event
+	      }
+	      throw TypeError('Uncaught, unspecified "error" event.');
+	    }
+	  }
+
+	  handler = this._events[type];
+
+	  if (isUndefined(handler))
+	    return false;
+
+	  if (isFunction(handler)) {
+	    switch (arguments.length) {
+	      // fast cases
+	      case 1:
+	        handler.call(this);
+	        break;
+	      case 2:
+	        handler.call(this, arguments[1]);
+	        break;
+	      case 3:
+	        handler.call(this, arguments[1], arguments[2]);
+	        break;
+	      // slower
+	      default:
+	        len = arguments.length;
+	        args = new Array(len - 1);
+	        for (i = 1; i < len; i++)
+	          args[i - 1] = arguments[i];
+	        handler.apply(this, args);
+	    }
+	  } else if (isObject(handler)) {
+	    len = arguments.length;
+	    args = new Array(len - 1);
+	    for (i = 1; i < len; i++)
+	      args[i - 1] = arguments[i];
+
+	    listeners = handler.slice();
+	    len = listeners.length;
+	    for (i = 0; i < len; i++)
+	      listeners[i].apply(this, args);
+	  }
+
+	  return true;
+	};
+
+	EventEmitter.prototype.addListener = function(type, listener) {
+	  var m;
+
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+
+	  if (!this._events)
+	    this._events = {};
+
+	  // To avoid recursion in the case that type === "newListener"! Before
+	  // adding it to the listeners, first emit "newListener".
+	  if (this._events.newListener)
+	    this.emit('newListener', type,
+	              isFunction(listener.listener) ?
+	              listener.listener : listener);
+
+	  if (!this._events[type])
+	    // Optimize the case of one listener. Don't need the extra array object.
+	    this._events[type] = listener;
+	  else if (isObject(this._events[type]))
+	    // If we've already got an array, just append.
+	    this._events[type].push(listener);
+	  else
+	    // Adding the second element, need to change to array.
+	    this._events[type] = [this._events[type], listener];
+
+	  // Check for listener leak
+	  if (isObject(this._events[type]) && !this._events[type].warned) {
+	    var m;
+	    if (!isUndefined(this._maxListeners)) {
+	      m = this._maxListeners;
+	    } else {
+	      m = EventEmitter.defaultMaxListeners;
+	    }
+
+	    if (m && m > 0 && this._events[type].length > m) {
+	      this._events[type].warned = true;
+	      console.error('(node) warning: possible EventEmitter memory ' +
+	                    'leak detected. %d listeners added. ' +
+	                    'Use emitter.setMaxListeners() to increase limit.',
+	                    this._events[type].length);
+	      if (typeof console.trace === 'function') {
+	        // not supported in IE 10
+	        console.trace();
+	      }
+	    }
+	  }
+
+	  return this;
+	};
+
+	EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+	EventEmitter.prototype.once = function(type, listener) {
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+
+	  var fired = false;
+
+	  function g() {
+	    this.removeListener(type, g);
+
+	    if (!fired) {
+	      fired = true;
+	      listener.apply(this, arguments);
+	    }
+	  }
+
+	  g.listener = listener;
+	  this.on(type, g);
+
+	  return this;
+	};
+
+	// emits a 'removeListener' event iff the listener was removed
+	EventEmitter.prototype.removeListener = function(type, listener) {
+	  var list, position, length, i;
+
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+
+	  if (!this._events || !this._events[type])
+	    return this;
+
+	  list = this._events[type];
+	  length = list.length;
+	  position = -1;
+
+	  if (list === listener ||
+	      (isFunction(list.listener) && list.listener === listener)) {
+	    delete this._events[type];
+	    if (this._events.removeListener)
+	      this.emit('removeListener', type, listener);
+
+	  } else if (isObject(list)) {
+	    for (i = length; i-- > 0;) {
+	      if (list[i] === listener ||
+	          (list[i].listener && list[i].listener === listener)) {
+	        position = i;
+	        break;
+	      }
+	    }
+
+	    if (position < 0)
+	      return this;
+
+	    if (list.length === 1) {
+	      list.length = 0;
+	      delete this._events[type];
+	    } else {
+	      list.splice(position, 1);
+	    }
+
+	    if (this._events.removeListener)
+	      this.emit('removeListener', type, listener);
+	  }
+
+	  return this;
+	};
+
+	EventEmitter.prototype.removeAllListeners = function(type) {
+	  var key, listeners;
+
+	  if (!this._events)
+	    return this;
+
+	  // not listening for removeListener, no need to emit
+	  if (!this._events.removeListener) {
+	    if (arguments.length === 0)
+	      this._events = {};
+	    else if (this._events[type])
+	      delete this._events[type];
+	    return this;
+	  }
+
+	  // emit removeListener for all listeners on all events
+	  if (arguments.length === 0) {
+	    for (key in this._events) {
+	      if (key === 'removeListener') continue;
+	      this.removeAllListeners(key);
+	    }
+	    this.removeAllListeners('removeListener');
+	    this._events = {};
+	    return this;
+	  }
+
+	  listeners = this._events[type];
+
+	  if (isFunction(listeners)) {
+	    this.removeListener(type, listeners);
+	  } else {
+	    // LIFO order
+	    while (listeners.length)
+	      this.removeListener(type, listeners[listeners.length - 1]);
+	  }
+	  delete this._events[type];
+
+	  return this;
+	};
+
+	EventEmitter.prototype.listeners = function(type) {
+	  var ret;
+	  if (!this._events || !this._events[type])
+	    ret = [];
+	  else if (isFunction(this._events[type]))
+	    ret = [this._events[type]];
+	  else
+	    ret = this._events[type].slice();
+	  return ret;
+	};
+
+	EventEmitter.listenerCount = function(emitter, type) {
+	  var ret;
+	  if (!emitter._events || !emitter._events[type])
+	    ret = 0;
+	  else if (isFunction(emitter._events[type]))
+	    ret = 1;
+	  else
+	    ret = emitter._events[type].length;
+	  return ret;
+	};
+
+	function isFunction(arg) {
+	  return typeof arg === 'function';
+	}
+
+	function isNumber(arg) {
+	  return typeof arg === 'number';
+	}
+
+	function isObject(arg) {
+	  return typeof arg === 'object' && arg !== null;
+	}
+
+	function isUndefined(arg) {
+	  return arg === void 0;
+	}
+
+
+/***/ },
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	var Dispatcher = __webpack_require__(217).Dispatcher;
+
+	module.exports = new Dispatcher();
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppDispatcher.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+
+	module.exports.Dispatcher = __webpack_require__(218);
+
+
+/***/ },
+/* 218 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright (c) 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule Dispatcher
+	 * 
+	 * @preventMunge
+	 */
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	var invariant = __webpack_require__(219);
+
+	var _prefix = 'ID_';
+
+	/**
+	 * Dispatcher is used to broadcast payloads to registered callbacks. This is
+	 * different from generic pub-sub systems in two ways:
+	 *
+	 *   1) Callbacks are not subscribed to particular events. Every payload is
+	 *      dispatched to every registered callback.
+	 *   2) Callbacks can be deferred in whole or part until other callbacks have
+	 *      been executed.
+	 *
+	 * For example, consider this hypothetical flight destination form, which
+	 * selects a default city when a country is selected:
+	 *
+	 *   var flightDispatcher = new Dispatcher();
+	 *
+	 *   // Keeps track of which country is selected
+	 *   var CountryStore = {country: null};
+	 *
+	 *   // Keeps track of which city is selected
+	 *   var CityStore = {city: null};
+	 *
+	 *   // Keeps track of the base flight price of the selected city
+	 *   var FlightPriceStore = {price: null}
+	 *
+	 * When a user changes the selected city, we dispatch the payload:
+	 *
+	 *   flightDispatcher.dispatch({
+	 *     actionType: 'city-update',
+	 *     selectedCity: 'paris'
+	 *   });
+	 *
+	 * This payload is digested by `CityStore`:
+	 *
+	 *   flightDispatcher.register(function(payload) {
+	 *     if (payload.actionType === 'city-update') {
+	 *       CityStore.city = payload.selectedCity;
+	 *     }
+	 *   });
+	 *
+	 * When the user selects a country, we dispatch the payload:
+	 *
+	 *   flightDispatcher.dispatch({
+	 *     actionType: 'country-update',
+	 *     selectedCountry: 'australia'
+	 *   });
+	 *
+	 * This payload is digested by both stores:
+	 *
+	 *   CountryStore.dispatchToken = flightDispatcher.register(function(payload) {
+	 *     if (payload.actionType === 'country-update') {
+	 *       CountryStore.country = payload.selectedCountry;
+	 *     }
+	 *   });
+	 *
+	 * When the callback to update `CountryStore` is registered, we save a reference
+	 * to the returned token. Using this token with `waitFor()`, we can guarantee
+	 * that `CountryStore` is updated before the callback that updates `CityStore`
+	 * needs to query its data.
+	 *
+	 *   CityStore.dispatchToken = flightDispatcher.register(function(payload) {
+	 *     if (payload.actionType === 'country-update') {
+	 *       // `CountryStore.country` may not be updated.
+	 *       flightDispatcher.waitFor([CountryStore.dispatchToken]);
+	 *       // `CountryStore.country` is now guaranteed to be updated.
+	 *
+	 *       // Select the default city for the new country
+	 *       CityStore.city = getDefaultCityForCountry(CountryStore.country);
+	 *     }
+	 *   });
+	 *
+	 * The usage of `waitFor()` can be chained, for example:
+	 *
+	 *   FlightPriceStore.dispatchToken =
+	 *     flightDispatcher.register(function(payload) {
+	 *       switch (payload.actionType) {
+	 *         case 'country-update':
+	 *         case 'city-update':
+	 *           flightDispatcher.waitFor([CityStore.dispatchToken]);
+	 *           FlightPriceStore.price =
+	 *             getFlightPriceStore(CountryStore.country, CityStore.city);
+	 *           break;
+	 *     }
+	 *   });
+	 *
+	 * The `country-update` payload will be guaranteed to invoke the stores'
+	 * registered callbacks in order: `CountryStore`, `CityStore`, then
+	 * `FlightPriceStore`.
+	 */
+
+	var Dispatcher = (function () {
+	  function Dispatcher() {
+	    _classCallCheck(this, Dispatcher);
+
+	    this._callbacks = {};
+	    this._isDispatching = false;
+	    this._isHandled = {};
+	    this._isPending = {};
+	    this._lastID = 1;
+	  }
+
+	  /**
+	   * Registers a callback to be invoked with every dispatched payload. Returns
+	   * a token that can be used with `waitFor()`.
+	   */
+
+	  Dispatcher.prototype.register = function register(callback) {
+	    var id = _prefix + this._lastID++;
+	    this._callbacks[id] = callback;
+	    return id;
+	  };
+
+	  /**
+	   * Removes a callback based on its token.
+	   */
+
+	  Dispatcher.prototype.unregister = function unregister(id) {
+	    !this._callbacks[id] ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.unregister(...): `%s` does not map to a registered callback.', id) : invariant(false) : undefined;
+	    delete this._callbacks[id];
+	  };
+
+	  /**
+	   * Waits for the callbacks specified to be invoked before continuing execution
+	   * of the current callback. This method should only be used by a callback in
+	   * response to a dispatched payload.
+	   */
+
+	  Dispatcher.prototype.waitFor = function waitFor(ids) {
+	    !this._isDispatching ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.waitFor(...): Must be invoked while dispatching.') : invariant(false) : undefined;
+	    for (var ii = 0; ii < ids.length; ii++) {
+	      var id = ids[ii];
+	      if (this._isPending[id]) {
+	        !this._isHandled[id] ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.waitFor(...): Circular dependency detected while ' + 'waiting for `%s`.', id) : invariant(false) : undefined;
+	        continue;
+	      }
+	      !this._callbacks[id] ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.waitFor(...): `%s` does not map to a registered callback.', id) : invariant(false) : undefined;
+	      this._invokeCallback(id);
+	    }
+	  };
+
+	  /**
+	   * Dispatches a payload to all registered callbacks.
+	   */
+
+	  Dispatcher.prototype.dispatch = function dispatch(payload) {
+	    !!this._isDispatching ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.') : invariant(false) : undefined;
+	    this._startDispatching(payload);
+	    try {
+	      for (var id in this._callbacks) {
+	        if (this._isPending[id]) {
+	          continue;
+	        }
+	        this._invokeCallback(id);
+	      }
+	    } finally {
+	      this._stopDispatching();
+	    }
+	  };
+
+	  /**
+	   * Is this Dispatcher currently dispatching.
+	   */
+
+	  Dispatcher.prototype.isDispatching = function isDispatching() {
+	    return this._isDispatching;
+	  };
+
+	  /**
+	   * Call the callback stored with the given id. Also do some internal
+	   * bookkeeping.
+	   *
+	   * @internal
+	   */
+
+	  Dispatcher.prototype._invokeCallback = function _invokeCallback(id) {
+	    this._isPending[id] = true;
+	    this._callbacks[id](this._pendingPayload);
+	    this._isHandled[id] = true;
+	  };
+
+	  /**
+	   * Set up bookkeeping needed when dispatching.
+	   *
+	   * @internal
+	   */
+
+	  Dispatcher.prototype._startDispatching = function _startDispatching(payload) {
+	    for (var id in this._callbacks) {
+	      this._isPending[id] = false;
+	      this._isHandled[id] = false;
+	    }
+	    this._pendingPayload = payload;
+	    this._isDispatching = true;
+	  };
+
+	  /**
+	   * Clear bookkeeping used for dispatching.
+	   *
+	   * @internal
+	   */
+
+	  Dispatcher.prototype._stopDispatching = function _stopDispatching() {
+	    delete this._pendingPayload;
+	    this._isDispatching = false;
+	  };
+
+	  return Dispatcher;
+	})();
+
+	module.exports = Dispatcher;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule invariant
+	 */
+
+	"use strict";
+
+	/**
+	 * Use invariant() to assert state which your program assumes to be true.
+	 *
+	 * Provide sprintf-style format (only %s is supported) and arguments
+	 * to provide information about what broke and what you were
+	 * expecting.
+	 *
+	 * The invariant message will be stripped in production, but the invariant
+	 * will remain to ensure logic does not differ in production.
+	 */
+
+	var invariant = function (condition, format, a, b, c, d, e, f) {
+	  if (process.env.NODE_ENV !== 'production') {
+	    if (format === undefined) {
+	      throw new Error('invariant requires an error message argument');
+	    }
+	  }
+
+	  if (!condition) {
+	    var error;
+	    if (format === undefined) {
+	      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+	    } else {
+	      var args = [a, b, c, d, e, f];
+	      var argIndex = 0;
+	      error = new Error('Invariant Violation: ' + format.replace(/%s/g, function () {
+	        return args[argIndex++];
+	      }));
+	    }
+
+	    error.framesToPop = 1; // we don't care about invariant's own frame
+	    throw error;
+	  }
+	};
+
+	module.exports = invariant;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 220 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	var PayloadSources = {
+	    SERVER_ACTION: 'SERVER_ACTION',
+	    VIEW_ACTION: 'VIEW_ACTION'
+	};
+
+	exports.PayloadSources = PayloadSources;
+	var ActionTypes = {
+	    LOAD_GITHUB_REPOS: 'LOAD_GITHUB_REPOS'
+	};
+	exports.ActionTypes = ActionTypes;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppConstants.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 221 */
@@ -25605,80 +26177,24 @@
 	    value: true
 	});
 
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	var _dispatcherAppDispatcher = __webpack_require__(216);
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	var _dispatcherAppDispatcher2 = _interopRequireDefault(_dispatcherAppDispatcher);
 
-	var _react = __webpack_require__(1);
+	var _constantsAppConstants = __webpack_require__(220);
 
-	var _react2 = _interopRequireDefault(_react);
-
-	var _redux = __webpack_require__(194);
-
-	var _reactRedux = __webpack_require__(186);
-
-	var _reactRouter = __webpack_require__(158);
-
-	var App = (function (_Component) {
-	    _inherits(App, _Component);
-
-	    function App(props, context) {
-	        _classCallCheck(this, App);
-
-	        _get(Object.getPrototypeOf(App.prototype), 'constructor', this).call(this, props, context);
+	var ActionCreators = {
+	    loadGithubRepos: function loadGithubRepos() {
+	        _dispatcherAppDispatcher2['default'].dispatch({
+	            actionType: _constantsAppConstants.ActionTypes.LOAD_GITHUB_REPOS
+	        });
 	    }
+	};
+	exports.ActionCreators = ActionCreators;
 
-	    _createClass(App, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2['default'].createElement(
-	                'div',
-	                null,
-	                _react2['default'].createElement(
-	                    'header',
-	                    null,
-	                    _react2['default'].createElement(
-	                        'h2',
-	                        null,
-	                        'timakinのほ〜むぺ〜じへっだ〜'
-	                    )
-	                ),
-	                _react2['default'].createElement(
-	                    'h1',
-	                    null,
-	                    'こんにちはこんにちは！'
-	                ),
-	                _react2['default'].createElement(
-	                    'div',
-	                    null,
-	                    this.props.children
-	                ),
-	                _react2['default'].createElement(
-	                    'footer',
-	                    null,
-	                    _react2['default'].createElement(
-	                        'h2',
-	                        null,
-	                        'timakinのほ〜むぺ〜じふった〜'
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return App;
-	})(_react.Component);
-
-	exports['default'] = App;
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "App.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ActionCreators.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }
 /******/ ]);

@@ -1,22 +1,43 @@
 import React from 'react';
+import PortfolioStore from '../../store/PortfolioStore';
+import { ActionCreators } from '../../actions/ActionCreators';
 
 export default class Github extends React.Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
+        this.state = this.getPortfolioState();
+        this._onChange = this._onChange.bind(this);
+    }
+
+    getPortfolioState() {
+        return {
+            allRepos: PortfolioStore.getAll()
+        };
     }
 
     componentDidMount() {
-        const { loadGithubRepos, portfolio } = this.props;
-        const result = loadGithubRepos;
-        console.log(portfolio);
-        console.log(result);
+        PortfolioStore.addEventListener(this._onChange);
+        ActionCreators.loadGithubRepos();
+    }
+
+    componentWillUnmount() {
+        PortfolioStore.removeChangeListener(this._onChange);
     }
 
     render() {
         return(
            <div>
                 <h1>Githubのポートフォリオ</h1>
+                <ul>
+                  {this.state.allRepos.map((repo) => {
+                      return <li key={repo.id}>{repo.name}: {repo.url}</li>;
+                  })}
+                </ul>
            </div>
         );
+    }
+
+    _onChange() {
+        this.setState(this.getPortfolioState());
     }
 }
