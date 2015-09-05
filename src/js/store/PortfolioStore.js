@@ -21,8 +21,9 @@ class PortfolioStoreSingleton extends EventEmitter {
         this.CHANGE_EVENT = 'change';
     }
 
-    insert(repo) {
-        this._repos.push(repo);
+    insert(repos) {
+        console.log(repos);
+        this._repos = this._repos.concat(repos);
     }
 
     static get instance() {
@@ -35,11 +36,16 @@ class PortfolioStoreSingleton extends EventEmitter {
     _onAction(action) {
       switch (action.actionType) {
           case ActionTypes.LOAD_GITHUB_REPOS:
-              this.insert({
+              this.insert([{
                   id: 0,
                   name: "testname",
                   url: "http://google.com"
-              });
+              },
+              {
+                  id: 1,
+                  name: "testname2",
+                  url: "http://yahoo.co.jp"
+              }]);
               this.emitChange();
               break;
           default:

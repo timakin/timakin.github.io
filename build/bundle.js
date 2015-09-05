@@ -20477,11 +20477,11 @@
 
 	var _PortfolioGithub2 = _interopRequireDefault(_PortfolioGithub);
 
-	var _reactRouterLibBrowserHistory = __webpack_require__(211);
+	var _reactRouterLibBrowserHistory = __webpack_require__(219);
 
 	var _reactRouterLibBrowserHistory2 = _interopRequireDefault(_reactRouterLibBrowserHistory);
 
-	var _reactRouterLibHashHistory = __webpack_require__(213);
+	var _reactRouterLibHashHistory = __webpack_require__(221);
 
 	var _reactRouterLibHashHistory2 = _interopRequireDefault(_reactRouterLibHashHistory);
 
@@ -24940,11 +24940,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _storePortfolioStore = __webpack_require__(214);
+	var _storePortfolioStore = __webpack_require__(211);
 
 	var _storePortfolioStore2 = _interopRequireDefault(_storePortfolioStore);
 
-	var _actionsActionCreators = __webpack_require__(221);
+	var _actionsActionCreators = __webpack_require__(218);
 
 	var Github = (function (_React$Component) {
 	    _inherits(Github, _React$Component);
@@ -24978,6 +24978,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            console.log(this.state.allRepos);
 	            return _react2['default'].createElement(
 	                'div',
 	                null,
@@ -25020,392 +25021,6 @@
 /* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
-
-	var _DOMHistory2 = __webpack_require__(212);
-
-	var _DOMHistory3 = _interopRequireDefault(_DOMHistory2);
-
-	var _DOMUtils = __webpack_require__(178);
-
-	var _NavigationTypes = __webpack_require__(173);
-
-	var _NavigationTypes2 = _interopRequireDefault(_NavigationTypes);
-
-	function updateCurrentState(extraState) {
-	  var state = window.history.state;
-
-	  if (state) window.history.replaceState(_extends(state, extraState), '');
-	}
-
-	/**
-	 * A history implementation for DOM environments that support the
-	 * HTML5 history API (pushState, replaceState, and the popstate event).
-	 * Provides the cleanest URLs and should always be used in browser
-	 * environments if possible.
-	 *
-	 * Note: BrowserHistory automatically falls back to using full page
-	 * refreshes if HTML5 history is not available, so URLs are always
-	 * the same across browsers.
-	 */
-
-	var BrowserHistory = (function (_DOMHistory) {
-	  function BrowserHistory(options) {
-	    _classCallCheck(this, BrowserHistory);
-
-	    _DOMHistory.call(this, options);
-	    this.handlePopState = this.handlePopState.bind(this);
-	    this.isSupported = (0, _DOMUtils.supportsHistory)();
-	  }
-
-	  _inherits(BrowserHistory, _DOMHistory);
-
-	  BrowserHistory.prototype._updateLocation = function _updateLocation(navigationType) {
-	    var state = null;
-
-	    if (this.isSupported) {
-	      var historyState = window.history.state;
-	      state = this._createState(historyState);
-
-	      if (!historyState || !historyState.key) window.history.replaceState(state, '');
-	    }
-
-	    this.location = this.createLocation((0, _DOMUtils.getWindowPath)(), state, navigationType);
-	  };
-
-	  BrowserHistory.prototype.setup = function setup() {
-	    if (this.location == null) this._updateLocation();
-	  };
-
-	  BrowserHistory.prototype.handlePopState = function handlePopState(event) {
-	    if (event.state === undefined) return; // Ignore extraneous popstate events in WebKit.
-
-	    this._updateLocation(_NavigationTypes2['default'].POP);
-	    this._notifyChange();
-	  };
-
-	  BrowserHistory.prototype.addChangeListener = function addChangeListener(listener) {
-	    _DOMHistory.prototype.addChangeListener.call(this, listener);
-
-	    if (this.changeListeners.length === 1) {
-	      if (window.addEventListener) {
-	        window.addEventListener('popstate', this.handlePopState, false);
-	      } else {
-	        window.attachEvent('onpopstate', this.handlePopState);
-	      }
-	    }
-	  };
-
-	  BrowserHistory.prototype.removeChangeListener = function removeChangeListener(listener) {
-	    _DOMHistory.prototype.removeChangeListener.call(this, listener);
-
-	    if (this.changeListeners.length === 0) {
-	      if (window.removeEventListener) {
-	        window.removeEventListener('popstate', this.handlePopState, false);
-	      } else {
-	        window.detachEvent('onpopstate', this.handlePopState);
-	      }
-	    }
-	  };
-
-	  // http://www.w3.org/TR/2011/WD-html5-20110113/history.html#dom-history-pushstate
-
-	  BrowserHistory.prototype.pushState = function pushState(state, path) {
-	    if (this.isSupported) {
-	      updateCurrentState(this.getScrollPosition());
-
-	      state = this._createState(state);
-
-	      window.history.pushState(state, '', path);
-	      this.location = this.createLocation(path, state, _NavigationTypes2['default'].PUSH);
-	      this._notifyChange();
-	    } else {
-	      window.location = path;
-	    }
-	  };
-
-	  // http://www.w3.org/TR/2011/WD-html5-20110113/history.html#dom-history-replacestate
-
-	  BrowserHistory.prototype.replaceState = function replaceState(state, path) {
-	    if (this.isSupported) {
-	      state = this._createState(state);
-
-	      window.history.replaceState(state, '', path);
-	      this.location = this.createLocation(path, state, _NavigationTypes2['default'].REPLACE);
-	      this._notifyChange();
-	    } else {
-	      window.location.replace(path);
-	    }
-	  };
-
-	  return BrowserHistory;
-	})(_DOMHistory3['default']);
-
-	var history = new BrowserHistory();
-	exports.history = history;
-	exports['default'] = BrowserHistory;
-
-/***/ },
-/* 212 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
-
-	var _History2 = __webpack_require__(175);
-
-	var _History3 = _interopRequireDefault(_History2);
-
-	var _DOMUtils = __webpack_require__(178);
-
-	/**
-	 * A history interface that assumes a DOM environment.
-	 */
-
-	var DOMHistory = (function (_History) {
-	  function DOMHistory() {
-	    var options = arguments[0] === undefined ? {} : arguments[0];
-
-	    _classCallCheck(this, DOMHistory);
-
-	    _History.call(this, options);
-	    this.getScrollPosition = options.getScrollPosition || _DOMUtils.getWindowScrollPosition;
-	  }
-
-	  _inherits(DOMHistory, _History);
-
-	  DOMHistory.prototype.go = function go(n) {
-	    if (n === 0) return;
-
-	    window.history.go(n);
-	  };
-
-	  return DOMHistory;
-	})(_History3['default']);
-
-	exports['default'] = DOMHistory;
-	module.exports = exports['default'];
-
-/***/ },
-/* 213 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
-
-	var _warning = __webpack_require__(160);
-
-	var _warning2 = _interopRequireDefault(_warning);
-
-	var _DOMHistory2 = __webpack_require__(212);
-
-	var _DOMHistory3 = _interopRequireDefault(_DOMHistory2);
-
-	var _NavigationTypes = __webpack_require__(173);
-
-	var _NavigationTypes2 = _interopRequireDefault(_NavigationTypes);
-
-	var _DOMUtils = __webpack_require__(178);
-
-	var _URLUtils = __webpack_require__(165);
-
-	var DefaultQueryKey = '_qk';
-
-	function ensureSlash() {
-	  var path = (0, _DOMUtils.getHashPath)();
-
-	  if ((0, _URLUtils.isAbsolutePath)(path)) return true;
-
-	  (0, _DOMUtils.replaceHashPath)('/' + path);
-
-	  return false;
-	}
-
-	function addQueryStringValueToPath(path, key, value) {
-	  return path + (path.indexOf('?') === -1 ? '?' : '&') + ('' + key + '=' + value);
-	}
-
-	function getQueryStringValueFromPath(path, key) {
-	  var match = path.match(new RegExp('\\?.*?\\b' + key + '=(.+?)\\b'));
-	  return match && match[1];
-	}
-
-	function saveState(path, queryKey, state) {
-	  window.sessionStorage.setItem(state.key, JSON.stringify(state));
-	  return addQueryStringValueToPath(path, queryKey, state.key);
-	}
-
-	function readState(path, queryKey) {
-	  var sessionKey = getQueryStringValueFromPath(path, queryKey);
-	  var json = sessionKey && window.sessionStorage.getItem(sessionKey);
-
-	  if (json) {
-	    try {
-	      return JSON.parse(json);
-	    } catch (error) {}
-	  }
-
-	  return null;
-	}
-
-	function updateCurrentState(queryKey, extraState) {
-	  var path = (0, _DOMUtils.getHashPath)();
-	  var state = readState(path, queryKey);
-
-	  if (state) saveState(path, queryKey, _extends(state, extraState));
-	}
-
-	/**
-	 * A history implementation for DOM environments that uses window.location.hash
-	 * to store the current path. This is essentially a hack for older browsers that
-	 * do not support the HTML5 history API (IE <= 9).
-	 *
-	 * Support for persistence of state across page refreshes is provided using a
-	 * combination of a URL query string parameter and DOM storage. However, this
-	 * support is not enabled by default. In order to use it, create your own
-	 * HashHistory.
-	 *
-	 *   import HashHistory from 'react-router/lib/HashHistory';
-	 *   var StatefulHashHistory = new HashHistory({ queryKey: '_key' });
-	 *   React.render(<Router history={StatefulHashHistory} .../>, ...);
-	 */
-
-	var HashHistory = (function (_DOMHistory) {
-	  function HashHistory() {
-	    var options = arguments[0] === undefined ? {} : arguments[0];
-
-	    _classCallCheck(this, HashHistory);
-
-	    _DOMHistory.call(this, options);
-	    this.handleHashChange = this.handleHashChange.bind(this);
-	    this.queryKey = options.queryKey;
-
-	    if (typeof this.queryKey !== 'string') this.queryKey = this.queryKey ? DefaultQueryKey : null;
-	  }
-
-	  _inherits(HashHistory, _DOMHistory);
-
-	  HashHistory.prototype._updateLocation = function _updateLocation(navigationType) {
-	    var path = (0, _DOMUtils.getHashPath)();
-	    var state = this.queryKey ? readState(path, this.queryKey) : null;
-	    this.location = this.createLocation(path, state, navigationType);
-	  };
-
-	  HashHistory.prototype.setup = function setup() {
-	    if (this.location == null) {
-	      ensureSlash();
-	      this._updateLocation();
-	    }
-	  };
-
-	  HashHistory.prototype.handleHashChange = function handleHashChange() {
-	    if (!ensureSlash()) return;
-
-	    if (this._ignoreNextHashChange) {
-	      this._ignoreNextHashChange = false;
-	    } else {
-	      this._updateLocation(_NavigationTypes2['default'].POP);
-	      this._notifyChange();
-	    }
-	  };
-
-	  HashHistory.prototype.addChangeListener = function addChangeListener(listener) {
-	    _DOMHistory.prototype.addChangeListener.call(this, listener);
-
-	    if (this.changeListeners.length === 1) {
-	      if (window.addEventListener) {
-	        window.addEventListener('hashchange', this.handleHashChange, false);
-	      } else {
-	        window.attachEvent('onhashchange', this.handleHashChange);
-	      }
-	    }
-	  };
-
-	  HashHistory.prototype.removeChangeListener = function removeChangeListener(listener) {
-	    _DOMHistory.prototype.removeChangeListener.call(this, listener);
-
-	    if (this.changeListeners.length === 0) {
-	      if (window.removeEventListener) {
-	        window.removeEventListener('hashchange', this.handleHashChange, false);
-	      } else {
-	        window.detachEvent('onhashchange', this.handleHashChange);
-	      }
-	    }
-	  };
-
-	  HashHistory.prototype.pushState = function pushState(state, path) {
-	    (0, _warning2['default'])(this.queryKey || state == null, 'HashHistory needs a queryKey in order to persist state');
-
-	    if (this.queryKey) updateCurrentState(this.queryKey, this.getScrollPosition());
-
-	    state = this._createState(state);
-
-	    if (this.queryKey) path = saveState(path, this.queryKey, state);
-
-	    this._ignoreNextHashChange = true;
-	    window.location.hash = path;
-
-	    this.location = this.createLocation(path, state, _NavigationTypes2['default'].PUSH);
-
-	    this._notifyChange();
-	  };
-
-	  HashHistory.prototype.replaceState = function replaceState(state, path) {
-	    state = this._createState(state);
-
-	    if (this.queryKey) path = saveState(path, this.queryKey, state);
-
-	    this._ignoreNextHashChange = true;
-	    (0, _DOMUtils.replaceHashPath)(path);
-
-	    this.location = this.createLocation(path, state, _NavigationTypes2['default'].REPLACE);
-
-	    this._notifyChange();
-	  };
-
-	  HashHistory.prototype.makeHref = function makeHref(path) {
-	    return '#' + path;
-	  };
-
-	  return HashHistory;
-	})(_DOMHistory3['default']);
-
-	var history = new HashHistory();
-	exports.history = history;
-	exports['default'] = HashHistory;
-
-	// Ignore invalid JSON in session storage.
-
-/***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
@@ -25424,13 +25039,13 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var _events = __webpack_require__(215);
+	var _events = __webpack_require__(212);
 
-	var _dispatcherAppDispatcher = __webpack_require__(216);
+	var _dispatcherAppDispatcher = __webpack_require__(213);
 
 	var _dispatcherAppDispatcher2 = _interopRequireDefault(_dispatcherAppDispatcher);
 
-	var _constantsAppConstants = __webpack_require__(220);
+	var _constantsAppConstants = __webpack_require__(217);
 
 	var SINGLETON = Symbol();
 	var SINGLETON_ENFORCER = Symbol();
@@ -25455,19 +25070,24 @@
 
 	    _createClass(PortfolioStoreSingleton, [{
 	        key: 'insert',
-	        value: function insert(repo) {
-	            this._repos.push(repo);
+	        value: function insert(repos) {
+	            console.log(repos);
+	            this._repos = this._repos.concat(repos);
 	        }
 	    }, {
 	        key: '_onAction',
 	        value: function _onAction(action) {
 	            switch (action.actionType) {
 	                case _constantsAppConstants.ActionTypes.LOAD_GITHUB_REPOS:
-	                    this.insert({
+	                    this.insert([{
 	                        id: 0,
 	                        name: "testname",
 	                        url: "http://google.com"
-	                    });
+	                    }, {
+	                        id: 1,
+	                        name: "testname2",
+	                        url: "http://yahoo.co.jp"
+	                    }]);
 	                    this.emitChange();
 	                    break;
 	                default:
@@ -25513,7 +25133,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "PortfolioStore.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 215 */
+/* 212 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -25820,21 +25440,21 @@
 
 
 /***/ },
-/* 216 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
-	var Dispatcher = __webpack_require__(217).Dispatcher;
+	var Dispatcher = __webpack_require__(214).Dispatcher;
 
 	module.exports = new Dispatcher();
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppDispatcher.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 217 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -25846,11 +25466,11 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 
-	module.exports.Dispatcher = __webpack_require__(218);
+	module.exports.Dispatcher = __webpack_require__(215);
 
 
 /***/ },
-/* 218 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -25872,7 +25492,7 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var invariant = __webpack_require__(219);
+	var invariant = __webpack_require__(216);
 
 	var _prefix = 'ID_';
 
@@ -26087,7 +25707,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 219 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -26142,7 +25762,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 220 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26166,7 +25786,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppConstants.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 221 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26179,11 +25799,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _dispatcherAppDispatcher = __webpack_require__(216);
+	var _dispatcherAppDispatcher = __webpack_require__(213);
 
 	var _dispatcherAppDispatcher2 = _interopRequireDefault(_dispatcherAppDispatcher);
 
-	var _constantsAppConstants = __webpack_require__(220);
+	var _constantsAppConstants = __webpack_require__(217);
 
 	var ActionCreators = {
 	    loadGithubRepos: function loadGithubRepos() {
@@ -26195,6 +25815,392 @@
 	exports.ActionCreators = ActionCreators;
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/takahashiseiji/Desktop/timakin.github.io/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ActionCreators.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	var _DOMHistory2 = __webpack_require__(220);
+
+	var _DOMHistory3 = _interopRequireDefault(_DOMHistory2);
+
+	var _DOMUtils = __webpack_require__(178);
+
+	var _NavigationTypes = __webpack_require__(173);
+
+	var _NavigationTypes2 = _interopRequireDefault(_NavigationTypes);
+
+	function updateCurrentState(extraState) {
+	  var state = window.history.state;
+
+	  if (state) window.history.replaceState(_extends(state, extraState), '');
+	}
+
+	/**
+	 * A history implementation for DOM environments that support the
+	 * HTML5 history API (pushState, replaceState, and the popstate event).
+	 * Provides the cleanest URLs and should always be used in browser
+	 * environments if possible.
+	 *
+	 * Note: BrowserHistory automatically falls back to using full page
+	 * refreshes if HTML5 history is not available, so URLs are always
+	 * the same across browsers.
+	 */
+
+	var BrowserHistory = (function (_DOMHistory) {
+	  function BrowserHistory(options) {
+	    _classCallCheck(this, BrowserHistory);
+
+	    _DOMHistory.call(this, options);
+	    this.handlePopState = this.handlePopState.bind(this);
+	    this.isSupported = (0, _DOMUtils.supportsHistory)();
+	  }
+
+	  _inherits(BrowserHistory, _DOMHistory);
+
+	  BrowserHistory.prototype._updateLocation = function _updateLocation(navigationType) {
+	    var state = null;
+
+	    if (this.isSupported) {
+	      var historyState = window.history.state;
+	      state = this._createState(historyState);
+
+	      if (!historyState || !historyState.key) window.history.replaceState(state, '');
+	    }
+
+	    this.location = this.createLocation((0, _DOMUtils.getWindowPath)(), state, navigationType);
+	  };
+
+	  BrowserHistory.prototype.setup = function setup() {
+	    if (this.location == null) this._updateLocation();
+	  };
+
+	  BrowserHistory.prototype.handlePopState = function handlePopState(event) {
+	    if (event.state === undefined) return; // Ignore extraneous popstate events in WebKit.
+
+	    this._updateLocation(_NavigationTypes2['default'].POP);
+	    this._notifyChange();
+	  };
+
+	  BrowserHistory.prototype.addChangeListener = function addChangeListener(listener) {
+	    _DOMHistory.prototype.addChangeListener.call(this, listener);
+
+	    if (this.changeListeners.length === 1) {
+	      if (window.addEventListener) {
+	        window.addEventListener('popstate', this.handlePopState, false);
+	      } else {
+	        window.attachEvent('onpopstate', this.handlePopState);
+	      }
+	    }
+	  };
+
+	  BrowserHistory.prototype.removeChangeListener = function removeChangeListener(listener) {
+	    _DOMHistory.prototype.removeChangeListener.call(this, listener);
+
+	    if (this.changeListeners.length === 0) {
+	      if (window.removeEventListener) {
+	        window.removeEventListener('popstate', this.handlePopState, false);
+	      } else {
+	        window.detachEvent('onpopstate', this.handlePopState);
+	      }
+	    }
+	  };
+
+	  // http://www.w3.org/TR/2011/WD-html5-20110113/history.html#dom-history-pushstate
+
+	  BrowserHistory.prototype.pushState = function pushState(state, path) {
+	    if (this.isSupported) {
+	      updateCurrentState(this.getScrollPosition());
+
+	      state = this._createState(state);
+
+	      window.history.pushState(state, '', path);
+	      this.location = this.createLocation(path, state, _NavigationTypes2['default'].PUSH);
+	      this._notifyChange();
+	    } else {
+	      window.location = path;
+	    }
+	  };
+
+	  // http://www.w3.org/TR/2011/WD-html5-20110113/history.html#dom-history-replacestate
+
+	  BrowserHistory.prototype.replaceState = function replaceState(state, path) {
+	    if (this.isSupported) {
+	      state = this._createState(state);
+
+	      window.history.replaceState(state, '', path);
+	      this.location = this.createLocation(path, state, _NavigationTypes2['default'].REPLACE);
+	      this._notifyChange();
+	    } else {
+	      window.location.replace(path);
+	    }
+	  };
+
+	  return BrowserHistory;
+	})(_DOMHistory3['default']);
+
+	var history = new BrowserHistory();
+	exports.history = history;
+	exports['default'] = BrowserHistory;
+
+/***/ },
+/* 220 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	var _History2 = __webpack_require__(175);
+
+	var _History3 = _interopRequireDefault(_History2);
+
+	var _DOMUtils = __webpack_require__(178);
+
+	/**
+	 * A history interface that assumes a DOM environment.
+	 */
+
+	var DOMHistory = (function (_History) {
+	  function DOMHistory() {
+	    var options = arguments[0] === undefined ? {} : arguments[0];
+
+	    _classCallCheck(this, DOMHistory);
+
+	    _History.call(this, options);
+	    this.getScrollPosition = options.getScrollPosition || _DOMUtils.getWindowScrollPosition;
+	  }
+
+	  _inherits(DOMHistory, _History);
+
+	  DOMHistory.prototype.go = function go(n) {
+	    if (n === 0) return;
+
+	    window.history.go(n);
+	  };
+
+	  return DOMHistory;
+	})(_History3['default']);
+
+	exports['default'] = DOMHistory;
+	module.exports = exports['default'];
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	var _warning = __webpack_require__(160);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _DOMHistory2 = __webpack_require__(220);
+
+	var _DOMHistory3 = _interopRequireDefault(_DOMHistory2);
+
+	var _NavigationTypes = __webpack_require__(173);
+
+	var _NavigationTypes2 = _interopRequireDefault(_NavigationTypes);
+
+	var _DOMUtils = __webpack_require__(178);
+
+	var _URLUtils = __webpack_require__(165);
+
+	var DefaultQueryKey = '_qk';
+
+	function ensureSlash() {
+	  var path = (0, _DOMUtils.getHashPath)();
+
+	  if ((0, _URLUtils.isAbsolutePath)(path)) return true;
+
+	  (0, _DOMUtils.replaceHashPath)('/' + path);
+
+	  return false;
+	}
+
+	function addQueryStringValueToPath(path, key, value) {
+	  return path + (path.indexOf('?') === -1 ? '?' : '&') + ('' + key + '=' + value);
+	}
+
+	function getQueryStringValueFromPath(path, key) {
+	  var match = path.match(new RegExp('\\?.*?\\b' + key + '=(.+?)\\b'));
+	  return match && match[1];
+	}
+
+	function saveState(path, queryKey, state) {
+	  window.sessionStorage.setItem(state.key, JSON.stringify(state));
+	  return addQueryStringValueToPath(path, queryKey, state.key);
+	}
+
+	function readState(path, queryKey) {
+	  var sessionKey = getQueryStringValueFromPath(path, queryKey);
+	  var json = sessionKey && window.sessionStorage.getItem(sessionKey);
+
+	  if (json) {
+	    try {
+	      return JSON.parse(json);
+	    } catch (error) {}
+	  }
+
+	  return null;
+	}
+
+	function updateCurrentState(queryKey, extraState) {
+	  var path = (0, _DOMUtils.getHashPath)();
+	  var state = readState(path, queryKey);
+
+	  if (state) saveState(path, queryKey, _extends(state, extraState));
+	}
+
+	/**
+	 * A history implementation for DOM environments that uses window.location.hash
+	 * to store the current path. This is essentially a hack for older browsers that
+	 * do not support the HTML5 history API (IE <= 9).
+	 *
+	 * Support for persistence of state across page refreshes is provided using a
+	 * combination of a URL query string parameter and DOM storage. However, this
+	 * support is not enabled by default. In order to use it, create your own
+	 * HashHistory.
+	 *
+	 *   import HashHistory from 'react-router/lib/HashHistory';
+	 *   var StatefulHashHistory = new HashHistory({ queryKey: '_key' });
+	 *   React.render(<Router history={StatefulHashHistory} .../>, ...);
+	 */
+
+	var HashHistory = (function (_DOMHistory) {
+	  function HashHistory() {
+	    var options = arguments[0] === undefined ? {} : arguments[0];
+
+	    _classCallCheck(this, HashHistory);
+
+	    _DOMHistory.call(this, options);
+	    this.handleHashChange = this.handleHashChange.bind(this);
+	    this.queryKey = options.queryKey;
+
+	    if (typeof this.queryKey !== 'string') this.queryKey = this.queryKey ? DefaultQueryKey : null;
+	  }
+
+	  _inherits(HashHistory, _DOMHistory);
+
+	  HashHistory.prototype._updateLocation = function _updateLocation(navigationType) {
+	    var path = (0, _DOMUtils.getHashPath)();
+	    var state = this.queryKey ? readState(path, this.queryKey) : null;
+	    this.location = this.createLocation(path, state, navigationType);
+	  };
+
+	  HashHistory.prototype.setup = function setup() {
+	    if (this.location == null) {
+	      ensureSlash();
+	      this._updateLocation();
+	    }
+	  };
+
+	  HashHistory.prototype.handleHashChange = function handleHashChange() {
+	    if (!ensureSlash()) return;
+
+	    if (this._ignoreNextHashChange) {
+	      this._ignoreNextHashChange = false;
+	    } else {
+	      this._updateLocation(_NavigationTypes2['default'].POP);
+	      this._notifyChange();
+	    }
+	  };
+
+	  HashHistory.prototype.addChangeListener = function addChangeListener(listener) {
+	    _DOMHistory.prototype.addChangeListener.call(this, listener);
+
+	    if (this.changeListeners.length === 1) {
+	      if (window.addEventListener) {
+	        window.addEventListener('hashchange', this.handleHashChange, false);
+	      } else {
+	        window.attachEvent('onhashchange', this.handleHashChange);
+	      }
+	    }
+	  };
+
+	  HashHistory.prototype.removeChangeListener = function removeChangeListener(listener) {
+	    _DOMHistory.prototype.removeChangeListener.call(this, listener);
+
+	    if (this.changeListeners.length === 0) {
+	      if (window.removeEventListener) {
+	        window.removeEventListener('hashchange', this.handleHashChange, false);
+	      } else {
+	        window.detachEvent('onhashchange', this.handleHashChange);
+	      }
+	    }
+	  };
+
+	  HashHistory.prototype.pushState = function pushState(state, path) {
+	    (0, _warning2['default'])(this.queryKey || state == null, 'HashHistory needs a queryKey in order to persist state');
+
+	    if (this.queryKey) updateCurrentState(this.queryKey, this.getScrollPosition());
+
+	    state = this._createState(state);
+
+	    if (this.queryKey) path = saveState(path, this.queryKey, state);
+
+	    this._ignoreNextHashChange = true;
+	    window.location.hash = path;
+
+	    this.location = this.createLocation(path, state, _NavigationTypes2['default'].PUSH);
+
+	    this._notifyChange();
+	  };
+
+	  HashHistory.prototype.replaceState = function replaceState(state, path) {
+	    state = this._createState(state);
+
+	    if (this.queryKey) path = saveState(path, this.queryKey, state);
+
+	    this._ignoreNextHashChange = true;
+	    (0, _DOMUtils.replaceHashPath)(path);
+
+	    this.location = this.createLocation(path, state, _NavigationTypes2['default'].REPLACE);
+
+	    this._notifyChange();
+	  };
+
+	  HashHistory.prototype.makeHref = function makeHref(path) {
+	    return '#' + path;
+	  };
+
+	  return HashHistory;
+	})(_DOMHistory3['default']);
+
+	var history = new HashHistory();
+	exports.history = history;
+	exports['default'] = HashHistory;
+
+	// Ignore invalid JSON in session storage.
 
 /***/ }
 /******/ ]);

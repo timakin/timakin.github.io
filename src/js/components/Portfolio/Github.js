@@ -25,6 +25,7 @@ export default class Github extends React.Component {
     }
 
     render() {
+      console.log(this.state.allRepos);
         return(
            <div>
                 <h1>Githubのポートフォリオ</h1>
