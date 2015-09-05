@@ -20504,9 +20504,9 @@
 	                _react2['default'].createElement(
 	                    _reactRouter.Route,
 	                    { name: 'app', component: _App2['default'] },
-	                    _react2['default'].createElement(_reactRouter.Route, { name: 'home', path: 'home', component: _HomeHome2['default'] }),
+	                    _react2['default'].createElement(_reactRouter.Route, { name: 'home', path: '/', component: _HomeHome2['default'] }),
 	                    _react2['default'].createElement(_reactRouter.Route, { name: 'github', path: 'github', component: _PortfolioGithub2['default'] }),
-	                    _react2['default'].createElement(_reactRouter.Redirect, { path: '/', to: 'home' })
+	                    _react2['default'].createElement(_reactRouter.Redirect, { path: 'home', to: '/' })
 	                )
 	            );
 	        }
@@ -24973,12 +24973,11 @@
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
-	            _storePortfolioStore2['default'].removeChangeListener(this._onChange);
+	            _storePortfolioStore2['default'].removeEventListener(this._onChange);
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            console.log(this.state.allRepos);
 	            return _react2['default'].createElement(
 	                'div',
 	                null,
@@ -25069,9 +25068,8 @@
 	    }
 
 	    _createClass(PortfolioStoreSingleton, [{
-	        key: 'insert',
-	        value: function insert(repos) {
-	            console.log(repos);
+	        key: 'insertRepos',
+	        value: function insertRepos(repos) {
 	            this._repos = this._repos.concat(repos);
 	        }
 	    }, {
@@ -25079,15 +25077,9 @@
 	        value: function _onAction(action) {
 	            switch (action.actionType) {
 	                case _constantsAppConstants.ActionTypes.LOAD_GITHUB_REPOS:
-	                    this.insert([{
-	                        id: 0,
-	                        name: "testname",
-	                        url: "http://google.com"
-	                    }, {
-	                        id: 1,
-	                        name: "testname2",
-	                        url: "http://yahoo.co.jp"
-	                    }]);
+	                    if (this._repos.length === 0) {
+	                        this.insertRepos(action.repos);
+	                    }
 	                    this.emitChange();
 	                    break;
 	                default:
@@ -25808,7 +25800,16 @@
 	var ActionCreators = {
 	    loadGithubRepos: function loadGithubRepos() {
 	        _dispatcherAppDispatcher2['default'].dispatch({
-	            actionType: _constantsAppConstants.ActionTypes.LOAD_GITHUB_REPOS
+	            actionType: _constantsAppConstants.ActionTypes.LOAD_GITHUB_REPOS,
+	            repos: [{
+	                id: 0,
+	                name: "testname",
+	                url: "http://google.com"
+	            }, {
+	                id: 1,
+	                name: "testname2",
+	                url: "http://yahoo.co.jp"
+	            }]
 	        });
 	    }
 	};

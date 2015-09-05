@@ -16,9 +16,9 @@ export default class RootComponent extends Component {
         return(
             <Router history={history}>
                 <Route name="app" component={App}>
-                    <Route name="home" path="home" component={Home} />
+                    <Route name="home" path="/" component={Home} />
                     <Route name="github" path="github" component={Github} />
-                    <Redirect path="/" to="home" />
+                    <Redirect path="home" to="/" />
                 </Route>
             </Router>
         );

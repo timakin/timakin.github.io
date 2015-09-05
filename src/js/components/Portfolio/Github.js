@@ -21,11 +21,10 @@ export default class Github extends React.Component {
     }
 
     componentWillUnmount() {
-        PortfolioStore.removeChangeListener(this._onChange);
+        PortfolioStore.removeEventListener(this._onChange);
     }
 
     render() {
-      console.log(this.state.allRepos);
         return(
            <div>
                 <h1>Githubのポートフォリオ</h1>
