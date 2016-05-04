@@ -1,14 +1,14 @@
-module.exports = {
-    entry: './src/js/main.js',
+maaodule.exports = {
+    entry: './src/js/app.js',
     output: {
-        filename: './build/bundle.js'
+        filename: './dist/bundle.js'
     },
     watch: true,
     module: {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /node_modules/,
                 loaders: ['react-hot', 'jsx', 'babel']
             },
             {
