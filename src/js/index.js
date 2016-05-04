@@ -1,13 +1,14 @@
 'use strict';
 
-import { React } from 'react';
-import { Router } from 'react-router';
+const React = require('react');
+const ReactDOM = require('react-dom');
+import { Router, Route, Link } from 'react-router'
 
-var Home = React.createClass({
-    render: function() {
-        return (<h1>Welcome to the Home Page</h1>);
+class Home extends React.Component {
+    render() {
+        return <div>Hello world!!!!!</div>
     }
-});
+}
 
 ReactDOM.render((
     <Router>
