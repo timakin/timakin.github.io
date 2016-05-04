@@ -10,10 +10,6 @@ maaodule.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loaders: ['react-hot', 'jsx', 'babel']
-            },
-            {
-                test: /\.css$/,
-                loader: "style!css"
             }
         ]
     },
