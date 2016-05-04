@@ -74,7 +74,7 @@
 	            return React.createElement(
 	                'div',
 	                null,
-	                'Hello world!!!!!'
+	                'Timakin world!'
 	            );
 	        }
 	    }]);

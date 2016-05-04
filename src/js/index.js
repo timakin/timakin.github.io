@@ -6,7 +6,7 @@ import { Router, Route, Link } from 'react-router'
 
 class Home extends React.Component {
     render() {
-        return <div>Hello world!!!!!</div>
+        return <div>Timakin world!</div>
     }
 }
 
