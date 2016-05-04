@@ -1,20 +1,17 @@
-maaodule.exports = {
-    entry: './src/js/index.js',
+madule.exports = {
+    entry: __dirname + '/src/js/index.js',
     output: {
-        filename: './dist/bundle.js'
+        path: __dirname + '/dist',
+        filename: 'bundle.js'
     },
-    watch: true,
     module: {
         loaders: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loaders: ['react-hot', 'jsx', 'babel']
+                loader: 'babel-loader',
             }
         ]
-    },
-    resolve: {
-        extensions: ['', '.js', '.jsx', '.es6']
     }
 }
- 
+
